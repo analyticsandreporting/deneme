@@ -265,12 +265,12 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
 
     <div class="card">
-      <div class="card-label">Platform ve Alan Seç</div>
+      <div class="card-label">Platform, Proje ve Alan Seç</div>
       <div style="display:flex;gap:8px;margin-bottom:8px">
-        <select id="pSel" onchange="chkM()"><option value="">Platform seçin...</option></select>
-        <select id="aSel" onchange="chkM()"><option value="">Alan seçin...</option></select>
+        <select id="pSel" onchange="chkM()" style="flex:1"><option value="">Platform seçin...</option></select>
+        <select id="prjSel" onchange="prjSorKontrol(this.value);chkM()" style="flex:1"><option value="">Proje seçin...</option><option value="IKEA">IKEA</option><option value="Decathlon">Decathlon</option><option value="Derimod">Derimod</option></select>
       </div>
-      <select id="prjSel" onchange="chkM()" style="margin-bottom:8px"><option value="">Proje seçin...</option><option value="IKEA">IKEA</option><option value="DECATHLON">Decathlon</option><option value="DERIMOD">Derimod</option></select>
+      <select id="aSel" onchange="chkM()" style="margin-bottom:8px"><option value="">Alan seçin...</option></select>
       <input type="text" id="qrM" placeholder="veya QR kodu: P01-A01" oninput="this.value=this.value.toUpperCase();chkM()" style="margin-bottom:8px">
       <button class="btn btn-primary" id="mBtn" onclick="manuelGiris()" disabled>Devam et</button>
     </div>
@@ -380,9 +380,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 
 const AUTH_URL='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f4fb8b83ebf94ac592daedf26043e889/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=q2N33AVJIa-BWbP3Z9-2M8-15-QkJWf5otVg_S8myO4';
 const PA='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/fef6810e4df745818f4cebd6990d5277/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bYG93e6RT0Cefm-XRexYS0gvP_XABb0pQH4cBHvNx90';
-// Mail bildirimi için Power Automate URL — doldurun
-const MAIL_URL='BURAYA_MAIL_POWER_AUTOMATE_URL_GIRIN';
-// 3 sabit yönetici mail adresi
+// Yönetici mail adresleri
 const YONETICI_MAILLERI=['enes.cakar@arvato.com','ekrem.aydogdu@arvato.com','oguzcan.yuce@arvato.com'];
 // Sicil no -> mail eşleştirme tablosu
 const DENETCI_MAILLERI={"1477": "mesut.demir@arvato.com", "1127": "umut.tas@arvato.com", "1224": "oguz.sevindik@arvato.com", "1363": "yasin.tercan@arvato.com", "1185": "abdulkadir.yazici@arvato.com", "2758": "senem.ciftci@arvato.com", "7219": "ramazan.durmus@arvato.com", "1210": "mustafa.uzum@arvato.com", "2792": "mehmet.yilmaz@arvato.com", "5550": "ugurcan.ustun@arvato.com", "2309": "bugra.ozturk@arvato.com", "3423": "ilyas.teymur@arvato.com", "1663": "yasar.yazici@arvato.com", "2368": "okan.alkan@arvato.com", "9967": "can.yilmaz@arvato.com", "1972": "mucahit.ozkan@arvato.com", "1122": "emirhan.coskun@arvato.com", "1993": "ferhat.akman@arvato.com", "6251": "ferhat.kurt@arvato.com", "5498": "samet.yuksel@arvato.com", "2187": "yasin.aydin@arvato.com", "1141": "busra.kayaoglu@arvato.com", "1533": "umay.kayaalp@arvato.com", "2290": "kubra.kilinc@arvato.com", "5053": "meltem.kocael@arvato.com", "7074": "aysenur.bika@arvato.com", "7483": "ahmet.aslan@arvato.com", "10145": "berfin.dogan@arvato.com", "15666": "emre.bektas@arvato.com", "16007": "ekrem.aydogdu@arvato.com", "17271": "irem.polat@arvato.com", "18759": "aksanur.olgun@arvato.com", "18935": "mucahit.celiker@arvato.com", "19335": "emre.deger@arvato.com", "19404": "enes.cakar@arvato.com", "20101": "azad.tunc@arvato.com", "21970": "eser.cagatay@arvato.com", "22558": "hazar.saricimen@arvato.com", "23265": "oguzcan.yuce@arvato.com", "1743": "firat.arguden@arvato.com"};
@@ -779,7 +777,108 @@ function mkData(){
   const kl=['1S','2S','3S','4S','5S'];let tE=0,tH=0,tN=0;
   kl.forEach(k=>{st.sr.filter(s=>s.k===k).forEach(s=>{if(st.cv[s.id]==='Evet')tE++;else if(st.cv[s.id]==='Hayır')tH++;else if(st.cv[s.id]==='NA')tN++;});});
   const gc=st.sr.length-tN;
-  return{denetimTarihi:new Date().toISOString(),platformID:st.pid,platform:PL[st.pid],projeID:st.prj,proje:PRJ[st.prj]||st.prj,alanID:st.aid,alan:AL[st.aid],denetci:st.dc,denetciSicil:usr.sicilNo,toplamSoru:st.sr.length,evetSayisi:tE,hayirSayisi:tH,naSayisi:tN,skorYuzde:gc>0?Math.round(tE/gc*100):0,detaylar:st.sr.map(s=>({soruID:s.id,kategori:s.k,soru:s.s,cevap:st.cv[s.id]||'Cevaplanmadı',not:st.nt[s.id]||'',fotograf:st.ft[s.id]||'',fotografBase64:st.fb[s.id]||''}))};
+  const skor=gc>0?Math.round(tE/gc*100):0;
+  const detaylar=st.sr.map(s=>({soruID:s.id,kategori:s.k,soru:s.s,cevap:st.cv[s.id]||'Cevaplanmadı',not:st.nt[s.id]||'',fotograf:st.ft[s.id]||'',fotografBase64:st.fb[s.id]||''}));
+  const denetciMail=DENETCI_MAILLERI[usr.sicilNo]||'';
+  const tarihStr=new Date().toLocaleString('tr-TR');
+  return{
+    denetimTarihi:new Date().toISOString(),
+    platformID:st.pid,platform:PL[st.pid],
+    projeID:st.prj,proje:PRJ[st.prj]||st.prj,
+    alanID:st.aid,alan:AL[st.aid],
+    denetci:st.dc,denetciSicil:usr.sicilNo,denetciMail:denetciMail,
+    yoneticiMailleri:YONETICI_MAILLERI,
+    toplamSoru:st.sr.length,evetSayisi:tE,hayirSayisi:tH,naSayisi:tN,skorYuzde:skor,
+    detaylar:detaylar,
+    mailHTML:mkMailHTML({denetci:st.dc,proje:PRJ[st.prj]||st.prj,platform:PL[st.pid],alan:AL[st.aid],tarih:tarihStr,skor,tE,tH,tN,sr:st.sr,cv:st.cv,nt:st.nt,ft:st.ft})
+  };
+}
+
+function mkMailHTML(d){
+  const skorRenk=d.skor>=80?'#15803D':d.skor>=60?'#B45309':'#B91C1C';
+  const kl=['1S','2S','3S','4S','5S'];
+  const kn={'1S':'1S · Ayıkla','2S':'2S · Düzenle','3S':'3S · Temizle','4S':'4S · Standartlaştır','5S':'5S · Sürdür'};
+  const kc={'1S':'#0078BE','2S':'#1A7A4A','3S':'#B91C1C','4S':'#6D28D9','5S':'#D97706'};
+  let katRows='';
+  kl.forEach(k=>{
+    const ks=d.sr.filter(s=>s.k===k);if(!ks.length)return;
+    const ev=ks.filter(s=>d.cv[s.id]==='Evet').length,na=ks.filter(s=>d.cv[s.id]==='NA').length;
+    const gc=ks.length-na,pct=gc>0?Math.round(ev/gc*100):0;
+    const pc=pct>=80?'#15803D':pct>=60?'#B45309':'#B91C1C';
+    katRows+=`<tr><td style="font-size:12px;color:#64748B;padding:5px 0;width:110px">${kn[k]}</td><td style="padding:5px 8px"><div style="background:#E2E8F0;border-radius:99px;height:6px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${kc[k]};border-radius:99px"></div></div></td><td style="font-size:12px;font-weight:600;color:${pc};text-align:right;padding:5px 0;white-space:nowrap;width:36px">${pct}%</td></tr>`;
+  });
+  const hayirlar=d.sr.filter(s=>d.cv[s.id]==='Hayır');
+  let hayirRows='';
+  if(hayirlar.length){
+    hayirlar.forEach(s=>{
+      const not=d.nt[s.id]?`<div style="font-size:11px;color:#64748B;margin-top:3px">Not: ${d.nt[s.id]}</div>`:'';
+      const foto=d.ft[s.id]?`<div style="font-size:11px;color:#15803D;font-weight:600;margin-top:3px">&#128247; Fotoğraf eklendi</div>`:'';
+      hayirRows+=`<tr><td style="padding:10px 14px;border-bottom:1px solid #FEE2E2;vertical-align:top"><div style="font-size:10px;font-weight:700;color:#B91C1C;margin-bottom:3px;font-family:monospace">${s.id} · ${s.k}</div><div style="font-size:12px;color:#0D1F2D;line-height:1.5">${s.s}</div>${not}${foto}</td></tr>`;
+    });
+  }
+  const hayirBlok=hayirlar.length?`
+    <tr><td style="padding:0 0 16px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#B91C1C;margin-bottom:6px">Uygunsuzluklar (${hayirlar.length})</div>
+      <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #FCA5A5;border-radius:8px;overflow:hidden">
+        <tr><td style="background:#FEF0EE;padding:7px 14px;border-bottom:1px solid #FCA5A5"><span style="font-size:11px;font-weight:700;color:#B91C1C">&#9888; ${hayirlar.length} uygunsuz madde tespit edildi</span></td></tr>
+        ${hayirRows}
+      </table>
+    </td></tr>`:'';
+  return`<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#F0F4F8;font-family:Inter,Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#F0F4F8;padding:24px 0">
+<tr><td align="center">
+<table width="480" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:16px;overflow:hidden;border:1px solid #DDE3EC">
+  <tr><td style="background:#0078BE;padding:20px 24px">
+    <table width="100%" cellpadding="0" cellspacing="0"><tr>
+      <td><div style="background:#fff;border-radius:6px;padding:4px 12px;display:inline-block"><span style="font-size:15px;font-weight:700;color:#0078BE">arvato</span></div></td>
+      <td align="right"><span style="font-size:11px;color:rgba(255,255,255,.7)">5S Denetim Sistemi</span></td>
+    </tr></table>
+  </td></tr>
+  <tr><td style="padding:24px 24px 0">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td style="padding-bottom:16px">
+        <div style="font-size:15px;font-weight:600;color:#0D1F2D;margin-bottom:2px">5S Denetim Tamamlandı</div>
+        <div style="font-size:12px;color:#64748B">Platform L · ${d.proje} · ${d.tarih}</div>
+      </td></tr>
+      <tr><td style="padding-bottom:16px">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:${skorRenk};border-radius:12px">
+          <tr>
+            <td style="padding:16px 20px">
+              <div style="font-size:11px;color:rgba(255,255,255,.7);margin-bottom:2px">Genel Uyum Skoru</div>
+              <div style="font-size:40px;font-weight:700;color:#fff;line-height:1;font-family:monospace">${d.skor}%</div>
+            </td>
+            <td align="right" style="padding:16px 20px">
+              <span style="background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tE} Evet</span><br>
+              <span style="background:rgba(239,68,68,.35);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tH} Hayır</span>${d.tN?`<br><span style="background:rgba(255,255,255,.12);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tN} N/A</span>`:''}
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding-bottom:16px">
+        <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:8px">
+          <tr>
+            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px;width:50%"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Denetçi</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.denetci}</div></td>
+            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px;width:50%"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Alan</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.alan}</div></td>
+          </tr>
+          <tr>
+            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Proje</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.proje}</div></td>
+            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Platform</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.platform}</div></td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding-bottom:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#64748B;margin-bottom:8px">Kategori Skorları</div>
+        <table width="100%" cellpadding="0" cellspacing="0">${katRows}</table>
+      </td></tr>
+      ${hayirBlok}
+      <tr><td style="border-top:1px solid #EEF1F5;padding:14px 0">
+        <div style="font-size:11px;color:#94A3B8;line-height:1.6">Bu e-posta <strong>LENS 5S Denetim Sistemi</strong> tarafından otomatik gönderilmiştir.<br>Arvato Supply Chain Solutions · Lean &amp; Operasyon Standardizasyonu</div>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
 }
 
 async function spGonder(){
@@ -790,9 +889,7 @@ async function spGonder(){
     const r=await fetch(PA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     if(r.ok||r.status===202||r.status===200){
       kb.textContent='Kaydedildi ✓';kb.className='btn btn-success';
-      showToast("SharePoint'e başarıyla kaydedildi!");
-      // Mail bildirimi gönder
-      mailGonder(data);
+      showToast("SharePoint'e kaydedildi, mail gönderildi!");
     }else{throw new Error('HTTP '+r.status);}
   }catch(e){
     if(e.message&&e.message.includes('fetch')){
@@ -801,33 +898,7 @@ async function spGonder(){
     }else{
       kb.textContent='Gönderildi ✓';kb.className='btn btn-success';
       showToast('Veri gönderildi, SharePoint kontrol edin');
-      mailGonder(data);
     }
-  }
-}
-
-async function mailGonder(data){
-  if(!MAIL_URL||MAIL_URL.includes('BURAYA'))return; // URL henüz tanımlanmamış
-  const denetciMail=DENETCI_MAILLERI[data.denetciSicil]||'';
-  const mailData={
-    denetciSicil:data.denetciSicil,
-    denetci:data.denetci,
-    denetciMail:denetciMail,
-    proje:data.proje,
-    platform:data.platform,
-    alan:data.alan,
-    tarih:data.denetimTarihi,
-    skor:data.skorYuzde,
-    evetSayisi:data.evetSayisi,
-    hayirSayisi:data.hayirSayisi,
-    naSayisi:data.naSayisi,
-    yoneticiMailleri:YONETICI_MAILLERI,
-    uygunsuzluklar:data.detaylar.filter(d=>d.cevap==='Hayır').map(d=>({soruID:d.soruID,soru:d.soru,not:d.not}))
-  };
-  try{
-    await fetch(MAIL_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(mailData)});
-  }catch(e){
-    console.warn('Mail gönderilemedi:',e);
   }
 }
 
