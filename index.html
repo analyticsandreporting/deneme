@@ -265,13 +265,13 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
 
     <div class="card">
-      <div class="card-label">Platform, Proje ve Alan Seç</div>
+      <div class="card-label">Platform ve Proje Seç</div>
       <div style="display:flex;gap:8px;margin-bottom:8px">
         <select id="pSel" onchange="chkM()" style="flex:1"><option value="">Platform seçin...</option></select>
-        <select id="prjSel" onchange="prjSorKontrol(this.value);chkM()" style="flex:1"><option value="">Proje seçin...</option><option value="IKEA">IKEA</option><option value="Decathlon">Decathlon</option><option value="Derimod">Derimod</option></select>
+        <select id="prjSel" onchange="chkM()" style="flex:1"><option value="">Proje seçin...</option><option value="IKEA">IKEA</option><option value="Decathlon">Decathlon</option><option value="Derimod">Derimod</option></select>
       </div>
-      <select id="aSel" onchange="chkM()" style="margin-bottom:8px"><option value="">Alan seçin...</option></select>
       <input type="text" id="qrM" placeholder="veya QR kodu: P01-A01" oninput="this.value=this.value.toUpperCase();chkM()" style="margin-bottom:8px">
+      <select id="aSel" style="display:none"></select>
       <button class="btn btn-primary" id="mBtn" onclick="manuelGiris()" disabled>Devam et</button>
     </div>
   </div>
@@ -523,48 +523,54 @@ function onPSel(){
 
 function chkM(){
   const p=document.getElementById('pSel').value;
-  const a=document.getElementById('aSel').value;
   const prj=document.getElementById('prjSel').value;
   const m=document.getElementById('qrM').value.trim();
-  const ok = ((p && a && prj) || m.match(/^P\d{2}-A\d{2}$/));
-  document.getElementById('mBtn').disabled = !ok;
+  const ok=(p&&prj)||m.match(/^P\d{2}-A\d{2}$/);
+  document.getElementById('mBtn').disabled=!ok;
 }
 
 function manuelGiris(){
   const m=document.getElementById('qrM').value.trim().toUpperCase();
-  let pid,aid;
-  if(m.match(/^P\d{2}-A\d{2}$/)){[pid,aid]=m.split('-');}
-  else{pid=document.getElementById('pSel').value;aid=document.getElementById('aSel').value;}
-  if(!PL[pid]){showToast('Geçersiz platform: '+pid);return;}
-  if(!AL[aid]){showToast('Geçersiz alan: '+aid);return;}
-  const prj=document.getElementById('prjSel').value;
-  if(!prj&&!m.match(/^P\d{2}-A\d{2}$/)){showToast('Lütfen proje seçin');return;}
-  st.pid=pid;st.aid=aid;st.prj=prj||'IKEA';goAlan();
+  let pid,aid=null;
+  if(m.match(/^P\d{2}-A\d{2}$/)){
+    [pid,aid]=m.split('-');
+    if(!PL[pid]){showToast('Geçersiz platform: '+pid);return;}
+    if(!AL[aid]){showToast('Geçersiz alan: '+aid);return;}
+  } else {
+    pid=document.getElementById('pSel').value;
+    if(!PL[pid]){showToast('Lütfen platform seçin');return;}
+  }
+  const prj=document.getElementById('prjSel').value||'IKEA';
+  st.pid=pid;st.aid=aid;st.prj=prj;
+  goAlan();
 }
 
 function goAlan(){
-  const alanAdi = AL[st.aid] || st.aid;
-  const platAdi = PL[st.pid] || st.pid;
-  const infoEl = document.getElementById('secilenAlanInfo');
-  if(infoEl) infoEl.textContent = platAdi + ' — ' + alanAdi;
   document.getElementById('s1bT').textContent=(PRJ[st.prj]||st.prj)+' · '+(PL[st.pid]||st.pid);
   const g=document.getElementById('aGrid');g.innerHTML='';
-  // Sadece seçili projeye ait alanları göster
-  const prjAlanlar = PRJ_ALANLAR[st.prj]||{};
+  const prjAlanlar=PRJ_ALANLAR[st.prj]||{};
   Object.entries(prjAlanlar).forEach(([id,ad])=>{
     if(!SR.some(s=>s.alanID===id&&s.projeID===st.prj))return;
     const b=document.createElement('button');
     b.className='ab'+(id===st.aid?' sel':'');
     b.innerHTML='<div class="aid">'+id+'</div>'+ad;
-    b.onclick=()=>{document.querySelectorAll('.ab').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');st.aid=id;chkB();};
+    b.onclick=()=>{
+      document.querySelectorAll('.ab').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');st.aid=id;chkB();
+    };
     g.appendChild(b);
   });
+  // QR ile geldiyse alan zaten seçili, butonu aktif et
+  if(st.aid)chkB();
   goScreen('s1b');
   const dEl=document.getElementById('dAdi');
   if(dEl&&usr.adSoyad){dEl.value=usr.adSoyad;chkB();}
 }
 
-function chkB(){document.getElementById('bBtn').disabled=!st.aid;}
+function chkB(){
+  const alanSec=!!st.aid;
+  document.getElementById('bBtn').disabled=!alanSec;
+}
 
 function dBaslat(){
   st.dc=document.getElementById('dAdi').value.trim()||usr.adSoyad;
@@ -1020,8 +1026,7 @@ function showToast(m){const t=document.getElementById('toast');t.textContent=m;t
 
 init();
 document.getElementById('pSel').addEventListener('change', function(){ chkM(); });
-document.getElementById('aSel').addEventListener('change', function(){ chkM(); });
-document.getElementById('prjSel').addEventListener('change', function(){ prjSorKontrol(this.value); chkM(); });
+document.getElementById('prjSel').addEventListener('change', function(){ chkM(); });
 
 </script>
 </body>
