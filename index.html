@@ -796,86 +796,188 @@ function mkData(){
 
 function mkMailHTML(d){
   const skorRenk=d.skor>=80?'#15803D':d.skor>=60?'#B45309':'#B91C1C';
+  const skorEtiket=d.skor>=80?'Uygun':'d.skor>=60?Geliştirilmeli':'Kritik';
   const kl=['1S','2S','3S','4S','5S'];
   const kn={'1S':'1S · Ayıkla','2S':'2S · Düzenle','3S':'3S · Temizle','4S':'4S · Standartlaştır','5S':'5S · Sürdür'};
   const kc={'1S':'#0078BE','2S':'#1A7A4A','3S':'#B91C1C','4S':'#6D28D9','5S':'#D97706'};
   let katRows='';
   kl.forEach(k=>{
     const ks=d.sr.filter(s=>s.k===k);if(!ks.length)return;
-    const ev=ks.filter(s=>d.cv[s.id]==='Evet').length,na=ks.filter(s=>d.cv[s.id]==='NA').length;
+    const ev=ks.filter(s=>d.cv[s.id]==='Evet').length,hy=ks.filter(s=>d.cv[s.id]==='Hayır').length,na=ks.filter(s=>d.cv[s.id]==='NA').length;
     const gc=ks.length-na,pct=gc>0?Math.round(ev/gc*100):0;
     const pc=pct>=80?'#15803D':pct>=60?'#B45309':'#B91C1C';
-    katRows+=`<tr><td style="font-size:12px;color:#64748B;padding:5px 0;width:110px">${kn[k]}</td><td style="padding:5px 8px"><div style="background:#E2E8F0;border-radius:99px;height:6px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${kc[k]};border-radius:99px"></div></div></td><td style="font-size:12px;font-weight:600;color:${pc};text-align:right;padding:5px 0;white-space:nowrap;width:36px">${pct}%</td></tr>`;
+    const bgPct=pct>=80?'#DCFCE7':pct>=60?'#FEF3C7':'#FEF0EE';
+    katRows+=`
+    <tr>
+      <td style="padding:10px 14px;border-bottom:1px solid #F1F5F9;vertical-align:middle">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:130px;vertical-align:middle">
+            <div style="font-size:12px;font-weight:600;color:#0D1F2D">${kn[k]}</div>
+            <div style="font-size:10px;color:#94A3B8;margin-top:1px">${ev} Evet · ${hy} Hayır${na?` · ${na} N/A`:''}</div>
+          </td>
+          <td style="padding:0 12px;vertical-align:middle">
+            <div style="background:#E2E8F0;border-radius:99px;height:7px;overflow:hidden">
+              <div style="width:${pct}%;height:100%;background:${kc[k]};border-radius:99px"></div>
+            </div>
+          </td>
+          <td style="width:42px;text-align:right;vertical-align:middle">
+            <span style="background:${bgPct};color:${pc};font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px">${pct}%</span>
+          </td>
+        </tr></table>
+      </td>
+    </tr>`;
   });
   const hayirlar=d.sr.filter(s=>d.cv[s.id]==='Hayır');
+  const evetler=d.sr.filter(s=>d.cv[s.id]==='Evet');
+  const nalar=d.sr.filter(s=>d.cv[s.id]==='NA');
   let hayirRows='';
   if(hayirlar.length){
-    hayirlar.forEach(s=>{
-      const not=d.nt[s.id]?`<div style="font-size:11px;color:#64748B;margin-top:3px">Not: ${d.nt[s.id]}</div>`:'';
-      const foto=d.ft[s.id]?`<div style="font-size:11px;color:#15803D;font-weight:600;margin-top:3px">&#128247; Fotoğraf eklendi</div>`:'';
-      hayirRows+=`<tr><td style="padding:10px 14px;border-bottom:1px solid #FEE2E2;vertical-align:top"><div style="font-size:10px;font-weight:700;color:#B91C1C;margin-bottom:3px;font-family:monospace">${s.id} · ${s.k}</div><div style="font-size:12px;color:#0D1F2D;line-height:1.5">${s.s}</div>${not}${foto}</td></tr>`;
+    hayirlar.forEach((s,i)=>{
+      const not=d.nt[s.id]?`<div style="font-size:11px;color:#64748B;margin-top:4px;padding:6px 8px;background:#FFF7F7;border-radius:4px;border-left:2px solid #FCA5A5">&#9998; ${d.nt[s.id]}</div>`:'';
+      const foto=d.ft[s.id]?`<div style="font-size:11px;color:#15803D;font-weight:600;margin-top:4px">&#9989; Fotoğraf eklendi</div>`:`<div style="font-size:11px;color:#94A3B8;margin-top:4px">Fotoğraf yok</div>`;
+      const bb=i<hayirlar.length-1?'border-bottom:1px solid #FEE2E2;':'';
+      hayirRows+=`<tr><td style="padding:12px 16px;${bb};vertical-align:top">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="vertical-align:top;width:20px;padding-top:1px"><div style="width:18px;height:18px;background:#B91C1C;border-radius:50%;text-align:center;line-height:18px;font-size:10px;font-weight:700;color:#fff">${i+1}</div></td>
+          <td style="padding-left:10px;vertical-align:top">
+            <div style="font-size:10px;font-weight:700;color:#B91C1C;margin-bottom:3px;font-family:monospace;letter-spacing:.3px">${s.id} &nbsp;·&nbsp; ${s.k}</div>
+            <div style="font-size:12px;color:#0D1F2D;line-height:1.55">${s.s}</div>
+            ${not}${foto}
+          </td>
+        </tr></table>
+      </td></tr>`;
     });
   }
   const hayirBlok=hayirlar.length?`
-    <tr><td style="padding:0 0 16px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#B91C1C;margin-bottom:6px">Uygunsuzluklar (${hayirlar.length})</div>
-      <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #FCA5A5;border-radius:8px;overflow:hidden">
-        <tr><td style="background:#FEF0EE;padding:7px 14px;border-bottom:1px solid #FCA5A5"><span style="font-size:11px;font-weight:700;color:#B91C1C">&#9888; ${hayirlar.length} uygunsuz madde tespit edildi</span></td></tr>
-        ${hayirRows}
-      </table>
-    </td></tr>`:'';
-  return`<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#F0F4F8;font-family:Inter,Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#F0F4F8;padding:24px 0">
+  <tr><td style="padding:0 24px 20px">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #FCA5A5;border-radius:10px;overflow:hidden">
+      <tr><td style="background:#B91C1C;padding:10px 16px">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td><span style="font-size:12px;font-weight:700;color:#fff;letter-spacing:.3px">UYGUNSUZLUKLAR</span></td>
+          <td align="right"><span style="background:rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px">${hayirlar.length} madde</span></td>
+        </tr></table>
+      </td></tr>
+      ${hayirRows}
+    </table>
+  </td></tr>`:'';
+  const evetBlok=evetler.length?`
+  <tr><td style="padding:0 24px 20px">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #86EFAC;border-radius:10px;overflow:hidden">
+      <tr><td style="background:#15803D;padding:10px 16px">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td><span style="font-size:12px;font-weight:700;color:#fff;letter-spacing:.3px">UYGUN MADDELER</span></td>
+          <td align="right"><span style="background:rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px">${evetler.length} madde</span></td>
+        </tr></table>
+      </td></tr>
+      ${evetler.map((s,i)=>{
+        const bb=i<evetler.length-1?'border-bottom:1px solid #DCFCE7;':'';
+        return`<tr><td style="padding:9px 16px;${bb}">
+          <table width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td style="width:20px;vertical-align:middle"><div style="width:16px;height:16px;background:#15803D;border-radius:50%;text-align:center;line-height:16px;font-size:9px;color:#fff;font-weight:700">${i+1}</div></td>
+            <td style="padding-left:10px">
+              <div style="font-size:10px;font-weight:700;color:#15803D;font-family:monospace;margin-bottom:2px">${s.id} · ${s.k}</div>
+              <div style="font-size:12px;color:#0D1F2D;line-height:1.45">${s.s}</div>
+            </td>
+          </tr></table>
+        </td></tr>`;
+      }).join('')}
+    </table>
+  </td></tr>`:'';
+  const naBlok=nalar.length?`
+  <tr><td style="padding:0 24px 20px">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #CBD5E1;border-radius:10px;overflow:hidden">
+      <tr><td style="background:#475569;padding:10px 16px">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td><span style="font-size:12px;font-weight:700;color:#fff;letter-spacing:.3px">UYGULANAMAZ (N/A)</span></td>
+          <td align="right"><span style="background:rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px">${nalar.length} madde</span></td>
+        </tr></table>
+      </td></tr>
+      ${nalar.map((s,i)=>{
+        const bb=i<nalar.length-1?'border-bottom:1px solid #F1F5F9;':'';
+        return`<tr><td style="padding:9px 16px;${bb}">
+          <div style="font-size:10px;font-weight:700;color:#64748B;font-family:monospace;margin-bottom:2px">${s.id} · ${s.k}</div>
+          <div style="font-size:12px;color:#0D1F2D;line-height:1.45">${s.s}</div>
+        </td></tr>`;
+      }).join('')}
+    </table>
+  </td></tr>`:'';
+  return`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EEF2F7;font-family:Arial,Helvetica,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#EEF2F7;padding:28px 0">
 <tr><td align="center">
-<table width="480" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:16px;overflow:hidden;border:1px solid #DDE3EC">
-  <tr><td style="background:#0078BE;padding:20px 24px">
+<table width="520" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:14px;overflow:hidden;border:1px solid #DDE3EC;max-width:520px">
+
+  <!-- HEADER -->
+  <tr><td style="background:#0078BE;padding:16px 24px">
     <table width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td><div style="background:#fff;border-radius:6px;padding:4px 12px;display:inline-block"><span style="font-size:15px;font-weight:700;color:#0078BE">arvato</span></div></td>
-      <td align="right"><span style="font-size:11px;color:rgba(255,255,255,.7)">5S Denetim Sistemi</span></td>
+      <td style="vertical-align:middle">
+        <div style="background:#fff;border-radius:6px;padding:5px 14px;display:inline-block">
+          <span style="font-size:16px;font-weight:700;color:#0078BE;letter-spacing:-.5px">arvato</span>
+        </div>
+      </td>
+      <td align="right" style="vertical-align:middle">
+        <span style="font-size:12px;font-weight:600;color:#fff;opacity:.9">5S Denetim Sistemi</span>
+      </td>
     </tr></table>
   </td></tr>
-  <tr><td style="padding:24px 24px 0">
-    <table width="100%" cellpadding="0" cellspacing="0">
-      <tr><td style="padding-bottom:16px">
-        <div style="font-size:15px;font-weight:600;color:#0D1F2D;margin-bottom:2px">5S Denetim Tamamlandı</div>
-        <div style="font-size:12px;color:#64748B">Platform L · ${d.proje} · ${d.tarih}</div>
-      </td></tr>
-      <tr><td style="padding-bottom:16px">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background:${skorRenk};border-radius:12px">
-          <tr>
-            <td style="padding:16px 20px">
-              <div style="font-size:11px;color:rgba(255,255,255,.7);margin-bottom:2px">Genel Uyum Skoru</div>
-              <div style="font-size:40px;font-weight:700;color:#fff;line-height:1;font-family:monospace">${d.skor}%</div>
-            </td>
-            <td align="right" style="padding:16px 20px">
-              <span style="background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tE} Evet</span><br>
-              <span style="background:rgba(239,68,68,.35);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tH} Hayır</span>${d.tN?`<br><span style="background:rgba(255,255,255,.12);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;display:inline-block;margin:2px">${d.tN} N/A</span>`:''}
-            </td>
-          </tr>
-        </table>
-      </td></tr>
-      <tr><td style="padding-bottom:16px">
-        <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:8px">
-          <tr>
-            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px;width:50%"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Denetçi</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.denetci}</div></td>
-            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px;width:50%"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Alan</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.alan}</div></td>
-          </tr>
-          <tr>
-            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Proje</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.proje}</div></td>
-            <td style="background:#F8FAFC;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#64748B;margin-bottom:2px">Platform</div><div style="font-size:13px;font-weight:600;color:#0D1F2D">${d.platform}</div></td>
-          </tr>
-        </table>
-      </td></tr>
-      <tr><td style="padding-bottom:16px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#64748B;margin-bottom:8px">Kategori Skorları</div>
-        <table width="100%" cellpadding="0" cellspacing="0">${katRows}</table>
-      </td></tr>
-      ${hayirBlok}
-      <tr><td style="border-top:1px solid #EEF1F5;padding:14px 0">
-        <div style="font-size:11px;color:#94A3B8;line-height:1.6">Bu e-posta <strong>LENS 5S Denetim Sistemi</strong> tarafından otomatik gönderilmiştir.<br>Arvato Supply Chain Solutions · Lean &amp; Operasyon Standardizasyonu</div>
-      </td></tr>
+
+  <!-- BAŞLIK ŞERIDI -->
+  <tr><td style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:14px 24px">
+    <div style="font-size:17px;font-weight:700;color:#0D1F2D">5S Denetim Tamamlandı</div>
+    <div style="font-size:12px;color:#64748B;margin-top:3px">${d.platform} &nbsp;·&nbsp; ${d.proje} &nbsp;·&nbsp; ${d.alan} &nbsp;·&nbsp; ${d.tarih}</div>
+  </td></tr>
+
+  <!-- SKOR -->
+  <tr><td style="padding:20px 24px 0">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:${skorRenk};border-radius:10px;overflow:hidden">
+      <tr>
+        <td style="padding:18px 22px;vertical-align:middle">
+          <div style="font-size:11px;color:rgba(255,255,255,.75);margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase">Genel Uyum Skoru</div>
+          <div style="font-size:48px;font-weight:700;color:#fff;line-height:1;font-family:monospace">${d.skor}%</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:6px">${d.sr.length} soru değerlendirildi</div>
+        </td>
+        <td align="right" style="padding:18px 22px;vertical-align:middle">
+          <div style="margin-bottom:6px"><span style="background:rgba(255,255,255,.22);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px">&#10003; ${d.tE} Evet</span></div>
+          <div style="margin-bottom:6px"><span style="background:rgba(0,0,0,.2);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px">&#10007; ${d.tH} Hayır</span></div>
+          ${d.tN?`<div><span style="background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px">— ${d.tN} N/A</span></div>`:''}
+        </td>
+      </tr>
     </table>
   </td></tr>
+
+  <!-- BİLGİ KUTULARI -->
+  <tr><td style="padding:16px 24px 4px">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:8px;margin:-8px">
+      <tr>
+        <td style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;width:25%"><div style="font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Denetçi</div><div style="font-size:13px;font-weight:700;color:#0D1F2D">${d.denetci}</div></td>
+        <td style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;width:25%"><div style="font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Alan</div><div style="font-size:13px;font-weight:700;color:#0D1F2D">${d.alan}</div></td>
+        <td style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;width:25%"><div style="font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Proje</div><div style="font-size:13px;font-weight:700;color:#0078BE">${d.proje}</div></td>
+        <td style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;width:25%"><div style="font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px">Platform</div><div style="font-size:13px;font-weight:700;color:#0D1F2D">${d.platform}</div></td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- KATEGORİ SKORLARI -->
+  <tr><td style="padding:20px 24px 8px">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#94A3B8;margin-bottom:4px">Kategori Skorları</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #E2E8F0;border-radius:10px;overflow:hidden">
+      ${katRows}
+    </table>
+  </td></tr>
+
+  <!-- CEVAP KARTLARI -->
+  ${hayirBlok}
+  ${evetBlok}
+  ${naBlok}
+
+  <!-- FOOTER -->
+  <tr><td style="border-top:1px solid #EEF1F5;padding:14px 24px 20px">
+    <div style="font-size:11px;color:#94A3B8;line-height:1.7">
+      Bu e-posta <strong style="color:#64748B">LENS 5S Denetim Sistemi</strong> tarafından otomatik olarak gönderilmiştir.<br>
+      Arvato Supply Chain Solutions &nbsp;·&nbsp; Lean &amp; Operasyon Standardizasyonu
+    </div>
+  </td></tr>
+
 </table>
 </td></tr></table>
 </body></html>`;
