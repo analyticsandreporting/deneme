@@ -583,7 +583,6 @@ function dBaslat(){
     showToast('Bu alan için '+PRJ[st.prj]+' sorusu bulunamadı!');return;
   }
   st.cv={};st.nt={};st.ft={};st.fb={};
-  st.baslangicZamani=Date.now();
   renderForm();
   document.getElementById('s2T').textContent=AL[st.aid]+' · '+PRJ[st.prj];
   document.getElementById('s2S').textContent='Platform L · '+st.pid;
@@ -792,7 +791,6 @@ function mkData(){
   const detaylar=st.sr.map(s=>({soruID:s.id,kategori:s.k,soru:s.s,cevap:st.cv[s.id]||'Cevaplanmadı',not:st.nt[s.id]||'',fotograf:st.ft[s.id]||'',fotografBase64:st.fb[s.id]||''}));
   const denetciMail=DENETCI_MAILLERI[usr.sicilNo]||'';
   const tarihStr=new Date().toLocaleString('tr-TR');
-  const sure=(function(){const ms=Date.now()-(st.baslangicZamani||Date.now());const d=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);return d+'dk '+s+'sn';})();
   const genelNot=st.genelNot||'';
   return{
     denetimTarihi:new Date().toISOString(),
@@ -804,7 +802,7 @@ function mkData(){
     genelNot:genelNot,
     toplamSoru:st.sr.length,evetSayisi:tE,hayirSayisi:tH,naSayisi:tN,skorYuzde:skor,
     detaylar:detaylar,
-    mailHTML:mkMailHTML({denetci:st.dc,proje:PRJ[st.prj]||st.prj,platform:PL[st.pid],alan:AL[st.aid],tarih:tarihStr,skor,tE,tH,tN,sr:st.sr,cv:st.cv,nt:st.nt,ft:st.ft,genelNot:genelNot,sure:sure})
+    mailHTML:mkMailHTML({denetci:st.dc,proje:PRJ[st.prj]||st.prj,platform:PL[st.pid],alan:AL[st.aid],tarih:tarihStr,skor,tE,tH,tN,sr:st.sr,cv:st.cv,nt:st.nt,ft:st.ft,genelNot:genelNot})
   };
 }
 
@@ -950,18 +948,8 @@ function mkMailHTML(d){
 
   <!-- BAŞLIK ŞERIDI -->
   <tr><td style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:14px 24px">
-    <table width="100%" cellpadding="0" cellspacing="0"><tr>
-      <td style="vertical-align:top">
-        <div style="font-size:17px;font-weight:700;color:#0D1F2D">5S Denetim Tamamlandı</div>
-        <div style="font-size:12px;color:#64748B;margin-top:3px">${d.platform} &nbsp;·&nbsp; ${d.proje} &nbsp;·&nbsp; ${d.alan} &nbsp;·&nbsp; ${d.tarih}</div>
-      </td>
-      <td align="right" style="vertical-align:top">
-        <div style="background:#F1F5F9;border:1px solid #E2E8F0;border-radius:8px;padding:8px 14px;display:inline-block;text-align:center">
-          <div style="font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">Denetim Süresi</div>
-          <div style="font-size:16px;font-weight:700;color:#0D1F2D;font-family:monospace">${d.sure||'—'}</div>
-        </div>
-      </td>
-    </tr></table>
+    <div style="font-size:17px;font-weight:700;color:#0D1F2D">5S Denetim Tamamlandı</div>
+    <div style="font-size:12px;color:#64748B;margin-top:3px">${d.platform} &nbsp;·&nbsp; ${d.proje} &nbsp;·&nbsp; ${d.alan} &nbsp;·&nbsp; ${d.tarih}</div>
   </td></tr>
 
   <!-- SKOR -->
@@ -972,6 +960,7 @@ function mkMailHTML(d){
           <div style="font-size:11px;color:rgba(255,255,255,.75);margin-bottom:4px;letter-spacing:.5px;text-transform:uppercase">Genel Uyum Skoru</div>
           <div style="font-size:48px;font-weight:700;color:#fff;line-height:1;font-family:monospace">${d.skor}%</div>
           <div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:6px">${d.sr.length} soru değerlendirildi</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:8px;border-top:1px solid rgba(255,255,255,.2);padding-top:8px">&#9203; Denetim süresi: <strong style="color:#fff">${d.sure||'—'}</strong></div>
         </td>
         <td align="right" style="padding:18px 22px;vertical-align:middle">
           <div style="margin-bottom:6px"><span style="background:rgba(255,255,255,.22);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px">&#10003; ${d.tE} Evet</span></div>
