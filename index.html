@@ -173,68 +173,10 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#0D1F2D;color:#fff;font-size:13px;font-weight:500;padding:12px 22px;border-radius:99px;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:100;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 #toast.show{transform:translateX(-50%) translateY(0)}
-/* KILAVUZ MODAL */
-.kilavuz-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:flex-end;justify-content:center;animation:ovIn .2s ease}
-.kilavuz-overlay.open{display:flex}
-@keyframes ovIn{from{opacity:0}to{opacity:1}}
-.kilavuz-sheet{background:#0D1F2D;border-radius:24px 24px 0 0;width:100%;max-width:430px;max-height:92vh;display:flex;flex-direction:column;animation:sheetUp .3s cubic-bezier(.34,1.56,.64,1)}
-@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.kilavuz-handle{width:36px;height:4px;background:rgba(255,255,255,.2);border-radius:99px;margin:12px auto 0;flex-shrink:0}
-.kilavuz-header{padding:14px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
-.kilavuz-header-title{font-size:15px;font-weight:700;color:#fff}
-.kilavuz-header-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
-.kilavuz-close{width:32px;height:32px;background:rgba(255,255,255,.1);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;line-height:1;flex-shrink:0}
-.kilavuz-tabs{display:flex;gap:0;padding:10px 16px 0;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
-.kilavuz-tabs::-webkit-scrollbar{display:none}
-.ktab{background:transparent;border:none;border-bottom:2px solid transparent;padding:8px 14px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;white-space:nowrap;transition:all .15s}
-.ktab.active{color:#4DB8FF;border-bottom-color:#4DB8FF}
-.kilavuz-body{flex:1;overflow-y:auto;padding:16px}
-.kilavuz-body::-webkit-scrollbar{width:4px}
-.kilavuz-body::-webkit-scrollbar-track{background:transparent}
-.kilavuz-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:99px}
-
-/* KILAVUZ CONTENT */
-.kv-hero{background:linear-gradient(135deg,rgba(0,120,190,.3),rgba(0,80,140,.2));border:1px solid rgba(0,120,190,.3);border-radius:14px;padding:18px;margin-bottom:12px;text-align:center}
-.kv-hero-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:4px}
-.kv-hero-sub{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6}
-.kv-flow{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;margin-bottom:4px}
-.kv-flow::-webkit-scrollbar{display:none}
-.kv-flow-box{background:rgba(0,120,190,.2);border:1px solid rgba(0,120,190,.4);border-radius:8px;padding:6px 10px;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;flex-shrink:0}
-.kv-flow-arr{font-size:12px;color:rgba(0,120,190,.6);flex-shrink:0}
-.kv-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-bottom:8px}
-.kv-step-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.kv-step-num{background:var(--arvato);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;flex-shrink:0}
-.kv-step-title{font-size:14px;font-weight:700;color:#fff}
-.kv-step-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
-.kv-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
-.kv-item:last-child{margin-bottom:0}
-.kv-item-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.kv-item-body{}
-.kv-item-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:2px}
-.kv-item-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.55}
-.kv-warn{background:rgba(180,83,9,.15);border:1px solid rgba(180,83,9,.4);border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
-.kv-warn-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-.kv-warn-text{font-size:12px;color:rgba(255,255,255,.75);line-height:1.6}
-.kv-warn-text strong{color:#FCD34D}
-.kv-badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.kv-badge{border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div class="app">
-
-<!-- LOADING EKRANI -->
-<div id="loadingScreen" style="position:fixed;inset:0;background:var(--arvato);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .4s ease">
-  <div style="background:#fff;border-radius:10px;padding:10px 24px">
-    <span style="font-size:22px;font-weight:700;color:var(--arvato);letter-spacing:-.5px;font-family:'Inter',sans-serif">arvato</span>
-  </div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
-    <div id="loadingSpinner" style="width:40px;height:40px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 0.8s linear infinite"></div>
-    <div id="loadingText" style="font-size:13px;color:rgba(255,255,255,.8);font-weight:500">Sorular yükleniyor...</div>
-  </div>
-  <div style="font-size:11px;color:rgba(255,255,255,.4)">LENS 5S Denetim Sistemi</div>
-</div>
 
 <!-- S0: GİRİŞ -->
 <div class="screen active" id="s0">
@@ -258,12 +200,6 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
     <div style="text-align:center;font-size:11px;color:var(--text-soft);padding:8px">
       Şifrenizi unuttuysanız yöneticinizle iletişime geçin.
-    </div>
-    <div style="padding:0 0 8px">
-      <button onclick="kilavuzAc()" style="width:100%;background:var(--arvato-light);border:1px solid #C5DDF6;border-radius:var(--rs);padding:11px 14px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--arvato);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s" onmouseover="this.style.background='#d4eaf8'" onmouseout="this.style.background='var(--arvato-light)'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        Kullanım Kılavuzu
-      </button>
     </div>
     <div style="text-align:center;padding:8px 0 4px;border-top:1px solid var(--border-light);margin-top:4px">
       <p style="font-size:10px;color:var(--text-hint);line-height:1.8">
@@ -332,7 +268,7 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
       <div class="card-label">Platform ve Proje Seç</div>
       <div style="display:flex;gap:8px;margin-bottom:8px">
         <select id="pSel" onchange="chkM()" style="flex:1"><option value="">Platform seçin...</option></select>
-        <select id="prjSel" onchange="chkM()" style="flex:1"><option value="">Proje seçin...</option></select>
+        <select id="prjSel" onchange="chkM()" style="flex:1"><option value="">Proje seçin...</option><option value="IKEA">IKEA</option><option value="Decathlon">Decathlon</option><option value="Derimod">Derimod</option></select>
       </div>
       <input type="text" id="qrM" placeholder="veya QR kodu: P01-A01" oninput="this.value=this.value.toUpperCase();chkM()" style="margin-bottom:8px">
       <select id="aSel" style="display:none"></select>
@@ -412,17 +348,6 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
     </div>
   </div>
   <div class="body">
-    <div id="kaydetSection">
-      <div style="background:linear-gradient(135deg,#0078BE 0%,#005A8E 100%);border-radius:var(--r);padding:16px;margin-bottom:10px;border:2px solid #0078BE;box-shadow:0 6px 24px rgba(0,120,190,.35)">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.6px;text-transform:uppercase;margin-bottom:4px">Son Adım</div>
-        <div style="font-size:13px;color:#fff;line-height:1.5;margin-bottom:14px">Denetim kaydedilmeden uygulamadan çıkılmamalıdır. Kaydetmek için aşağıdaki butona basın.</div>
-        <button class="btn" id="kBtn" onclick="spGonder()" style="background:#fff;color:#0078BE;font-size:15px;font-weight:700;padding:16px;border-radius:10px;letter-spacing:.2px;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0078BE" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Denetimi Tamamla ve Kaydet
-        </button>
-      </div>
-      <button class="btn btn-secondary" onclick="yeniDenetimOncesiUyar()" style="margin-top:-2px">Yeni Denetim</button>
-    </div>
     <div class="score-hero" id="sH">
       <div class="score-num" id="sN">—</div>
       <div class="score-label">Genel Uyum Skoru</div>
@@ -448,190 +373,32 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
       <div class="card-label">Genel Not <span style="font-size:9px;font-weight:400;color:var(--text-hint);text-transform:none;letter-spacing:0">(opsiyonel)</span></div>
       <textarea id="genelNot" placeholder="Denetim hakkında genel notlarınızı buraya girebilirsiniz..." rows="4" style="resize:vertical" oninput="st.genelNot=this.value"></textarea>
     </div>
+    <button class="btn btn-success" id="kBtn" onclick="spGonder()">SharePoint'e Kaydet</button>
+    <button class="btn btn-secondary" onclick="yeniDenetim()" style="margin-top:-2px">Yeni Denetim</button>
   </div>
 </div>
 
 </div>
-<!-- KILAVUZ MODAL -->
-<div class="kilavuz-overlay" id="kilavuzOverlay" onclick="kilavuzKapat(event)">
-  <div class="kilavuz-sheet" onclick="event.stopPropagation()">
-    <div class="kilavuz-handle"></div>
-    <div class="kilavuz-header">
-      <div>
-        <div class="kilavuz-header-title">📖 Kullanım Kılavuzu</div>
-        <div class="kilavuz-header-sub">LENS 5S Denetim Sistemi</div>
-      </div>
-      <button class="kilavuz-close" onclick="kilavuzKapat()">×</button>
-    </div>
-    <div class="kilavuz-tabs">
-      <button class="ktab active" onclick="kvTab(0,this)">Genel Bakış</button>
-      <button class="ktab" onclick="kvTab(1,this)">Giriş</button>
-      <button class="ktab" onclick="kvTab(2,this)">Alan Seçimi</button>
-      <button class="ktab" onclick="kvTab(3,this)">Denetim</button>
-      <button class="ktab" onclick="kvTab(4,this)">Kayıt</button>
-    </div>
-    <div class="kilavuz-body" id="kilavuzBody"></div>
-  </div>
-</div>
-
 <div id="toast"></div>
 <script>
 
 const AUTH_URL='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f4fb8b83ebf94ac592daedf26043e889/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=q2N33AVJIa-BWbP3Z9-2M8-15-QkJWf5otVg_S8myO4';
 const PA='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/fef6810e4df745818f4cebd6990d5277/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bYG93e6RT0Cefm-XRexYS0gvP_XABb0pQH4cBHvNx90';
 // Yönetici mail adresleri
-// Yönetici ve denetçi mail verileri auth flow'dan gelir — başlangıçta boş
+const YONETICI_MAILLERI=['enes.cakar@arvato.com','ekrem.aydogdu@arvato.com','oguzcan.yuce@arvato.com'];
+// Sicil no -> mail eşleştirme tablosu
+const DENETCI_MAILLERI={"1477": "mesut.demir@arvato.com", "1127": "umut.tas@arvato.com", "1224": "oguz.sevindik@arvato.com", "1363": "yasin.tercan@arvato.com", "1185": "abdulkadir.yazici@arvato.com", "2758": "senem.ciftci@arvato.com", "7219": "ramazan.durmus@arvato.com", "1210": "mustafa.uzum@arvato.com", "2792": "mehmet.yilmaz@arvato.com", "5550": "ugurcan.ustun@arvato.com", "2309": "bugra.ozturk@arvato.com", "3423": "ilyas.teymur@arvato.com", "1663": "yasar.yazici@arvato.com", "2368": "okan.alkan@arvato.com", "9967": "can.yilmaz@arvato.com", "1972": "mucahit.ozkan@arvato.com", "1122": "emirhan.coskun@arvato.com", "1993": "ferhat.akman@arvato.com", "6251": "ferhat.kurt@arvato.com", "5498": "samet.yuksel@arvato.com", "2187": "yasin.aydin@arvato.com", "1141": "busra.kayaoglu@arvato.com", "1533": "umay.kayaalp@arvato.com", "2290": "kubra.kilinc@arvato.com", "5053": "meltem.kocael@arvato.com", "7074": "aysenur.bika@arvato.com", "7483": "ahmet.aslan@arvato.com", "10145": "berfin.dogan@arvato.com", "15666": "emre.bektas@arvato.com", "16007": "ekrem.aydogdu@arvato.com", "17271": "irem.polat@arvato.com", "18759": "aksanur.olgun@arvato.com", "18935": "mucahit.celiker@arvato.com", "19335": "emre.deger@arvato.com", "19404": "enes.cakar@arvato.com", "20101": "azad.tunc@arvato.com", "21970": "eser.cagatay@arvato.com", "22558": "hazar.saricimen@arvato.com", "23265": "oguzcan.yuce@arvato.com", "1743": "firat.arguden@arvato.com"};
 // Projeler (sorular projeID bazında filtrelenecek)
-// Tüm veriler SharePoint'ten soruYukle() ve auth flow'undan dinamik gelir
-let PRJ={};
-let PRJ_ALANLAR={};
-let AL={};
-const PL={"PL":"Platform L"};
-// Mail verileri yeni kullanici bilgi flow'undan gelir
-const KULLANICI_BILGI_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e74145f84794efdb7797c110b318c5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UkXOm7P2tXfqg23oBp2pisalDfdR87dFzGshH47uPKQ';
-let YONETICI_MAILLERI=[];
-let DENETCI_MAILLERI={};
-// 5S_Sorular — SharePoint'ten çekilir
-const SORULAR_FLOW_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/115a64ccbf3e43ef9a6a7d3a9661b128/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=oD9vvUMvXt9XP7ZiLdhvxsgBVs5siu9r7ltfSfcZsgk';
-let SR = [];
+const PRJ={"IKEA":"IKEA","Decathlon":"Decathlon","Derimod":"Derimod"};
+const PRJ_ALANLAR={"IKEA": {"A01": "Mal Kabul", "A02": "MZ - Paketleme", "A03": "YK - Paketleme", "A04": "MZ Raf Alanları", "A05": "Akü-YK Raf Alanları", "A06": "İade Alanı", "A07": "Sevkiyat", "A08": "Rampa"}, "Derimod": {"A09": "Mal Kabul", "A10": "Raf Alanları", "A11": "Paketleme", "A12": "Sevkiyat", "A13": "İade Alanı"}, "Decathlon": {"A14": "Mal Kabul", "A15": "Raf Alanları", "A16": "Paketleme", "A17": "Sevkiyat", "A18": "İade Alanı"}};
+// Tek platform
+const AL={"A01": "Mal Kabul", "A02": "MZ - Paketleme", "A03": "YK - Paketleme", "A04": "MZ Raf Alanları", "A05": "Akü-YK Raf Alanları", "A06": "İade Alanı", "A07": "Sevkiyat", "A08": "Rampa", "A09": "Mal Kabul", "A10": "Raf Alanları", "A11": "Paketleme", "A12": "Sevkiyat", "A13": "İade Alanı", "A14": "Mal Kabul", "A15": "Raf Alanları", "A16": "Paketleme", "A17": "Sevkiyat", "A18": "İade Alanı"};
+const PL={"P04":"Platform L"};
+const SR=[{"projeID": "Decathlon", "id": "S001", "alanID": "A14", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (örn: Gereksiz palet, ambalaj ve atıklar alanda bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S002", "alanID": "A14", "k": "1S", "no": 2, "s": "Hasarlı veya eksik gelen ürünler sağlam ürünlerden ayrılmıştır."}, {"projeID": "Decathlon", "id": "S003", "alanID": "A14", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn:  Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S004", "alanID": "A14", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Decathlon", "id": "S005", "alanID": "A14", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş paletler, hasarlı ürünler, incelenecek ürünler vb.)"}, {"projeID": "Decathlon", "id": "S006", "alanID": "A14", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yer işaretleri, uyarıcı levhalar vb.)"}, {"projeID": "Decathlon", "id": "S007", "alanID": "A14", "k": "2S", "no": 3, "s": "Alanda kullanılan malzemeler düzgün şekilde istiflenmiştir. (Örn : Paletler üst üste istifleme kurallarına uygun şekilde konumlandırılmıştır.)"}, {"projeID": "Decathlon", "id": "S008", "alanID": "A14", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Decathlon", "id": "S009", "alanID": "A14", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S010", "alanID": "A14", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "Decathlon", "id": "S011", "alanID": "A14", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "Decathlon", "id": "S012", "alanID": "A14", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S013", "alanID": "A14", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Decathlon", "id": "S014", "alanID": "A14", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Decathlon", "id": "S015", "alanID": "A14", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Decathlon", "id": "S016", "alanID": "A14", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Decathlon", "id": "S017", "alanID": "A14", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Decathlon", "id": "S018", "alanID": "A14", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Decathlon", "id": "S019", "alanID": "A14", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Decathlon", "id": "S020", "alanID": "A14", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Decathlon", "id": "S021", "alanID": "A14", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Decathlon", "id": "S022", "alanID": "A15", "k": "1S", "no": 1, "s": "Depolama alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: Bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Decathlon", "id": "S023", "alanID": "A15", "k": "1S", "no": 2, "s": "Hasarlı ürünler alandan ayrılmıştır. (örn:  Hasarlı ürünler, kullanım dışı, hasarlı veya tanımsız aküler alanda bulundurulmamaktadır. vb.)"}, {"projeID": "Decathlon", "id": "S024", "alanID": "A15", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S025", "alanID": "A15", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Decathlon", "id": "S026", "alanID": "A15", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Raf lokasyonları (raf no, kat, göz) açık ve anlaşılır şekilde tanımlanmıştır. )"}, {"projeID": "Decathlon", "id": "S027", "alanID": "A15", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Raf numaraları, lokasyon etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Decathlon", "id": "S028", "alanID": "A15", "k": "2S", "no": 3, "s": "Ürünler tanımlı lokasyonlarında ve belirlenen düzen içinde depolanmaktadır. (Örn: Ürünler,  Şarj cihazları, kablolar ve fişler düzenli ve güvenli şekilde konumlandırılmıştır.)"}, {"projeID": "Decathlon", "id": "S029", "alanID": "A15", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Decathlon", "id": "S030", "alanID": "A15", "k": "3S", "no": 1, "s": "Raflar, zemin, çevre alanlar temizdir.  (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S031", "alanID": "A15", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (örn: Forklifler, Toplama arabaları, RF okuyucular vb.)"}, {"projeID": "Decathlon", "id": "S032", "alanID": "A15", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. (Örn: Kablolar ve fişler temiz ve hasarsızdır, Kırık, eğilmiş veya hasarlı raf elemanları tespit edilip bildirilmektedir.)"}, {"projeID": "Decathlon", "id": "S033", "alanID": "A15", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, raf çevresinde ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S034", "alanID": "A15", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Decathlon", "id": "S035", "alanID": "A15", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Decathlon", "id": "S036", "alanID": "A15", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Decathlon", "id": "S037", "alanID": "A15", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Decathlon", "id": "S038", "alanID": "A15", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Decathlon", "id": "S039", "alanID": "A15", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Decathlon", "id": "S040", "alanID": "A15", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Decathlon", "id": "S041", "alanID": "A15", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Decathlon", "id": "S042", "alanID": "A15", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Decathlon", "id": "S043", "alanID": "A16", "k": "1S", "no": 1, "s": "Paketleme alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: koli, kırpık, dolgu, patpat naylon, bant gibi sarf malzemeler, bant makinesi, MC gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Decathlon", "id": "S044", "alanID": "A16", "k": "1S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S045", "alanID": "A16", "k": "1S", "no": 3, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Decathlon", "id": "S046", "alanID": "A16", "k": "2S", "no": 1, "s": "Paketleme alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: sarf malzemeler, ürün ve ekipman bekleme alanları vb.)"}, {"projeID": "Decathlon", "id": "S047", "alanID": "A16", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: masa numaraları, masa üstü ekipman etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Decathlon", "id": "S048", "alanID": "A16", "k": "2S", "no": 3, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Decathlon", "id": "S049", "alanID": "A16", "k": "2S", "no": 4, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "Decathlon", "id": "S050", "alanID": "A16", "k": "3S", "no": 1, "s": "Paketleme alanı, masalar ve kullanılan ekipmanlar temizdir. Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, masalar ve ekipmanlar temizlenmektedir.)"}, {"projeID": "Decathlon", "id": "S051", "alanID": "A16", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, paketleme masalarında ve çevresinde, alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S052", "alanID": "A16", "k": "3S", "no": 3, "s": "Ekran/Mouse/Klavye mevcut ve çalışır durumdadır."}, {"projeID": "Decathlon", "id": "S053", "alanID": "A16", "k": "3S", "no": 4, "s": "Scanner mevcut ve çalışır durumdadır."}, {"projeID": "Decathlon", "id": "S054", "alanID": "A16", "k": "3S", "no": 5, "s": "Kargo etiketi yazıcısı mevcut ve çalışır durumdadır."}, {"projeID": "Decathlon", "id": "S055", "alanID": "A16", "k": "4S", "no": 1, "s": "Paketleme alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Decathlon", "id": "S056", "alanID": "A16", "k": "4S", "no": 2, "s": "Paketleme alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Decathlon", "id": "S057", "alanID": "A16", "k": "4S", "no": 3, "s": "Paketleme alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Decathlon", "id": "S058", "alanID": "A16", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Decathlon", "id": "S059", "alanID": "A16", "k": "5S", "no": 1, "s": "Paketleme alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Decathlon", "id": "S060", "alanID": "A16", "k": "5S", "no": 2, "s": "Paketleme alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Decathlon", "id": "S061", "alanID": "A16", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Decathlon", "id": "S062", "alanID": "A16", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Decathlon", "id": "S063", "alanID": "A17", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Decathlon", "id": "S064", "alanID": "A17", "k": "1S", "no": 2, "s": "Paletler tanımlı alanlarda istiflenmiştir, geçiş/yürüyüş yollarını engellememektedir."}, {"projeID": "Decathlon", "id": "S065", "alanID": "A17", "k": "1S", "no": 3, "s": "Transpalet / forklift vb. ekipmanlar tanımlı park alanlarında konumlandırılmıştır."}, {"projeID": "Decathlon", "id": "S066", "alanID": "A17", "k": "1S", "no": 4, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S067", "alanID": "A17", "k": "1S", "no": 5, "s": "Hasarlı palet, kırık ekipman veya kullanılamaz malzemeler alanda tutulmamaktadır."}, {"projeID": "Decathlon", "id": "S068", "alanID": "A17", "k": "1S", "no": 6, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Decathlon", "id": "S069", "alanID": "A17", "k": "2S", "no": 1, "s": "Alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş/dolu palet, kafes, evrak, ekipman park alanları vb.)"}, {"projeID": "Decathlon", "id": "S070", "alanID": "A17", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Decathlon", "id": "S071", "alanID": "A17", "k": "2S", "no": 3, "s": "Paletler istif yükseliğine uygun şekilde istiflenmiştir."}, {"projeID": "Decathlon", "id": "S072", "alanID": "A17", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Decathlon", "id": "S073", "alanID": "A17", "k": "2S", "no": 5, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "Decathlon", "id": "S074", "alanID": "A17", "k": "3S", "no": 1, "s": "Zemin ve kullanılan ekipmanlar temizdir."}, {"projeID": "Decathlon", "id": "S075", "alanID": "A17", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, rampa kapılarında, ekipman park alanlarında atık bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S076", "alanID": "A17", "k": "3S", "no": 3, "s": "Kırık, eğilmiş veya hasarlı ekipmanlar tespit edilip bildirilmektedir."}, {"projeID": "Decathlon", "id": "S077", "alanID": "A17", "k": "3S", "no": 4, "s": "Çalışma alanında, herhangi bir su / yağ / kimyasal sızıntı, birikinti veya dökülme gözlemlenmemiştir."}, {"projeID": "Decathlon", "id": "S078", "alanID": "A17", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, rampa ağzı, ekipmanlar temizlenmektedir.)"}, {"projeID": "Decathlon", "id": "S079", "alanID": "A17", "k": "4S", "no": 1, "s": "Rampa alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Decathlon", "id": "S080", "alanID": "A17", "k": "4S", "no": 2, "s": "Rampa alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, ekipman park planı, staging standardı vb.)"}, {"projeID": "Decathlon", "id": "S081", "alanID": "A17", "k": "4S", "no": 3, "s": "Rampa alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Decathlon", "id": "S082", "alanID": "A17", "k": "4S", "no": 4, "s": "Rampa alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Decathlon", "id": "S083", "alanID": "A17", "k": "5S", "no": 1, "s": "Rampa alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Decathlon", "id": "S084", "alanID": "A17", "k": "5S", "no": 2, "s": "Rampa alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Decathlon", "id": "S085", "alanID": "A17", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Decathlon", "id": "S086", "alanID": "A17", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Decathlon", "id": "S087", "alanID": "A18", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur."}, {"projeID": "Decathlon", "id": "S088", "alanID": "A18", "k": "1S", "no": 2, "s": "Raflara geri dönecek ürünler ile imhaya gidecek ürünler net şekilde ayrılmıştır."}, {"projeID": "Decathlon", "id": "S089", "alanID": "A18", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S090", "alanID": "A18", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Decathlon", "id": "S091", "alanID": "A18", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: İade ürünleri paletli ve tanımlı alanlarda düzenli şekilde konumlandırılmıştır.)"}, {"projeID": "Decathlon", "id": "S092", "alanID": "A18", "k": "2S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Decathlon", "id": "S093", "alanID": "A18", "k": "2S", "no": 3, "s": "İade kontrol ve ayrıştırma masaları düzenli ve erişilebilirdir."}, {"projeID": "Decathlon", "id": "S094", "alanID": "A18", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Decathlon", "id": "S095", "alanID": "A18", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S096", "alanID": "A18", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "Decathlon", "id": "S097", "alanID": "A18", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "Decathlon", "id": "S098", "alanID": "A18", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Decathlon", "id": "S099", "alanID": "A18", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Decathlon", "id": "S100", "alanID": "A18", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Decathlon", "id": "S101", "alanID": "A18", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Decathlon", "id": "S102", "alanID": "A18", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Decathlon", "id": "S103", "alanID": "A18", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Decathlon", "id": "S104", "alanID": "A18", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Decathlon", "id": "S105", "alanID": "A18", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Decathlon", "id": "S106", "alanID": "A18", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Decathlon", "id": "S107", "alanID": "A18", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Derimod", "id": "S108", "alanID": "A09", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (örn: Gereksiz palet, ambalaj ve atıklar alanda bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S109", "alanID": "A09", "k": "1S", "no": 2, "s": "Hasarlı veya eksik gelen ürünler sağlam ürünlerden ayrılmıştır."}, {"projeID": "Derimod", "id": "S110", "alanID": "A09", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn:  Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S111", "alanID": "A09", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Derimod", "id": "S112", "alanID": "A09", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş paletler, hasarlı ürünler, incelenecek ürünler vb.)"}, {"projeID": "Derimod", "id": "S113", "alanID": "A09", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yer işaretleri, uyarıcı levhalar vb.)"}, {"projeID": "Derimod", "id": "S114", "alanID": "A09", "k": "2S", "no": 3, "s": "Alanda kullanılan malzemeler düzgün şekilde istiflenmiştir. (Örn : Paletler üst üste istifleme kurallarına uygun şekilde konumlandırılmıştır.)"}, {"projeID": "Derimod", "id": "S115", "alanID": "A09", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Derimod", "id": "S116", "alanID": "A09", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S117", "alanID": "A09", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "Derimod", "id": "S118", "alanID": "A09", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "Derimod", "id": "S119", "alanID": "A09", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S120", "alanID": "A09", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Derimod", "id": "S121", "alanID": "A09", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Derimod", "id": "S122", "alanID": "A09", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Derimod", "id": "S123", "alanID": "A09", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Derimod", "id": "S124", "alanID": "A09", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Derimod", "id": "S125", "alanID": "A09", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Derimod", "id": "S126", "alanID": "A09", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Derimod", "id": "S127", "alanID": "A09", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Derimod", "id": "S128", "alanID": "A09", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Derimod", "id": "S129", "alanID": "A10", "k": "1S", "no": 1, "s": "Depolama alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: Bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Derimod", "id": "S130", "alanID": "A10", "k": "1S", "no": 2, "s": "Hasarlı ürünler alandan ayrılmıştır. (örn:  Hasarlı ürünler, kullanım dışı, hasarlı veya tanımsız aküler alanda bulundurulmamaktadır. vb.)"}, {"projeID": "Derimod", "id": "S131", "alanID": "A10", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S132", "alanID": "A10", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Derimod", "id": "S133", "alanID": "A10", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Raf lokasyonları (raf no, kat, göz) açık ve anlaşılır şekilde tanımlanmıştır. )"}, {"projeID": "Derimod", "id": "S134", "alanID": "A10", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Raf numaraları, lokasyon etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Derimod", "id": "S135", "alanID": "A10", "k": "2S", "no": 3, "s": "Ürünler tanımlı lokasyonlarında ve belirlenen düzen içinde depolanmaktadır. (Örn: Ürünler,  Şarj cihazları, kablolar ve fişler düzenli ve güvenli şekilde konumlandırılmıştır.)"}, {"projeID": "Derimod", "id": "S136", "alanID": "A10", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Derimod", "id": "S137", "alanID": "A10", "k": "3S", "no": 1, "s": "Raflar, zemin, çevre alanlar temizdir.  (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S138", "alanID": "A10", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (örn: Forklifler, Toplama arabaları, RF okuyucular vb.)"}, {"projeID": "Derimod", "id": "S139", "alanID": "A10", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. (Örn: Kablolar ve fişler temiz ve hasarsızdır, Kırık, eğilmiş veya hasarlı raf elemanları tespit edilip bildirilmektedir.)"}, {"projeID": "Derimod", "id": "S140", "alanID": "A10", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, raf çevresinde ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S141", "alanID": "A10", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Derimod", "id": "S142", "alanID": "A10", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Derimod", "id": "S143", "alanID": "A10", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Derimod", "id": "S144", "alanID": "A10", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Derimod", "id": "S145", "alanID": "A10", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Derimod", "id": "S146", "alanID": "A10", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Derimod", "id": "S147", "alanID": "A10", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Derimod", "id": "S148", "alanID": "A10", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Derimod", "id": "S149", "alanID": "A10", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Derimod", "id": "S150", "alanID": "A11", "k": "1S", "no": 1, "s": "Paketleme alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: koli, kırpık, dolgu, patpat naylon, bant gibi sarf malzemeler, bant makinesi, MC gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Derimod", "id": "S151", "alanID": "A11", "k": "1S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S152", "alanID": "A11", "k": "1S", "no": 3, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Derimod", "id": "S153", "alanID": "A11", "k": "2S", "no": 1, "s": "Paketleme alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: sarf malzemeler, ürün ve ekipman bekleme alanları vb.)"}, {"projeID": "Derimod", "id": "S154", "alanID": "A11", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: masa numaraları, masa üstü ekipman etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Derimod", "id": "S155", "alanID": "A11", "k": "2S", "no": 3, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Derimod", "id": "S156", "alanID": "A11", "k": "2S", "no": 4, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "Derimod", "id": "S157", "alanID": "A11", "k": "3S", "no": 1, "s": "Paketleme alanı, masalar ve kullanılan ekipmanlar temizdir. Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, masalar ve ekipmanlar temizlenmektedir.)"}, {"projeID": "Derimod", "id": "S158", "alanID": "A11", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, paketleme masalarında ve çevresinde, alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S159", "alanID": "A11", "k": "3S", "no": 3, "s": "Ekran/Mouse/Klavye mevcut ve çalışır durumdadır."}, {"projeID": "Derimod", "id": "S160", "alanID": "A11", "k": "3S", "no": 4, "s": "Scanner mevcut ve çalışır durumdadır."}, {"projeID": "Derimod", "id": "S161", "alanID": "A11", "k": "3S", "no": 5, "s": "Kargo etiketi yazıcısı mevcut ve çalışır durumdadır."}, {"projeID": "Derimod", "id": "S162", "alanID": "A11", "k": "4S", "no": 1, "s": "Paketleme alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Derimod", "id": "S163", "alanID": "A11", "k": "4S", "no": 2, "s": "Paketleme alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Derimod", "id": "S164", "alanID": "A11", "k": "4S", "no": 3, "s": "Paketleme alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Derimod", "id": "S165", "alanID": "A11", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Derimod", "id": "S166", "alanID": "A11", "k": "5S", "no": 1, "s": "Paketleme alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Derimod", "id": "S167", "alanID": "A11", "k": "5S", "no": 2, "s": "Paketleme alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Derimod", "id": "S168", "alanID": "A11", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Derimod", "id": "S169", "alanID": "A11", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Derimod", "id": "S170", "alanID": "A12", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "Derimod", "id": "S171", "alanID": "A12", "k": "1S", "no": 2, "s": "Paletler tanımlı alanlarda istiflenmiştir, geçiş/yürüyüş yollarını engellememektedir."}, {"projeID": "Derimod", "id": "S172", "alanID": "A12", "k": "1S", "no": 3, "s": "Transpalet / forklift vb. ekipmanlar tanımlı park alanlarında konumlandırılmıştır."}, {"projeID": "Derimod", "id": "S173", "alanID": "A12", "k": "1S", "no": 4, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S174", "alanID": "A12", "k": "1S", "no": 5, "s": "Hasarlı palet, kırık ekipman veya kullanılamaz malzemeler alanda tutulmamaktadır."}, {"projeID": "Derimod", "id": "S175", "alanID": "A12", "k": "1S", "no": 6, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Derimod", "id": "S176", "alanID": "A12", "k": "2S", "no": 1, "s": "Alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş/dolu palet, kafes, evrak, ekipman park alanları vb.)"}, {"projeID": "Derimod", "id": "S177", "alanID": "A12", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "Derimod", "id": "S178", "alanID": "A12", "k": "2S", "no": 3, "s": "Paletler istif yükseliğine uygun şekilde istiflenmiştir."}, {"projeID": "Derimod", "id": "S179", "alanID": "A12", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Derimod", "id": "S180", "alanID": "A12", "k": "2S", "no": 5, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "Derimod", "id": "S181", "alanID": "A12", "k": "3S", "no": 1, "s": "Zemin ve kullanılan ekipmanlar temizdir."}, {"projeID": "Derimod", "id": "S182", "alanID": "A12", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, rampa kapılarında, ekipman park alanlarında atık bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S183", "alanID": "A12", "k": "3S", "no": 3, "s": "Kırık, eğilmiş veya hasarlı ekipmanlar tespit edilip bildirilmektedir."}, {"projeID": "Derimod", "id": "S184", "alanID": "A12", "k": "3S", "no": 4, "s": "Çalışma alanında, herhangi bir su / yağ / kimyasal sızıntı, birikinti veya dökülme gözlemlenmemiştir."}, {"projeID": "Derimod", "id": "S185", "alanID": "A12", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, rampa ağzı, ekipmanlar temizlenmektedir.)"}, {"projeID": "Derimod", "id": "S186", "alanID": "A12", "k": "4S", "no": 1, "s": "Rampa alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Derimod", "id": "S187", "alanID": "A12", "k": "4S", "no": 2, "s": "Rampa alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, ekipman park planı, staging standardı vb.)"}, {"projeID": "Derimod", "id": "S188", "alanID": "A12", "k": "4S", "no": 3, "s": "Rampa alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Derimod", "id": "S189", "alanID": "A12", "k": "4S", "no": 4, "s": "Rampa alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Derimod", "id": "S190", "alanID": "A12", "k": "5S", "no": 1, "s": "Rampa alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Derimod", "id": "S191", "alanID": "A12", "k": "5S", "no": 2, "s": "Rampa alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Derimod", "id": "S192", "alanID": "A12", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Derimod", "id": "S193", "alanID": "A12", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "Derimod", "id": "S194", "alanID": "A13", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur."}, {"projeID": "Derimod", "id": "S195", "alanID": "A13", "k": "1S", "no": 2, "s": "Raflara geri dönecek ürünler ile imhaya gidecek ürünler net şekilde ayrılmıştır."}, {"projeID": "Derimod", "id": "S196", "alanID": "A13", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S197", "alanID": "A13", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "Derimod", "id": "S198", "alanID": "A13", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: İade ürünleri paletli ve tanımlı alanlarda düzenli şekilde konumlandırılmıştır.)"}, {"projeID": "Derimod", "id": "S199", "alanID": "A13", "k": "2S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "Derimod", "id": "S200", "alanID": "A13", "k": "2S", "no": 3, "s": "İade kontrol ve ayrıştırma masaları düzenli ve erişilebilirdir."}, {"projeID": "Derimod", "id": "S201", "alanID": "A13", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "Derimod", "id": "S202", "alanID": "A13", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S203", "alanID": "A13", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "Derimod", "id": "S204", "alanID": "A13", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "Derimod", "id": "S205", "alanID": "A13", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "Derimod", "id": "S206", "alanID": "A13", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "Derimod", "id": "S207", "alanID": "A13", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "Derimod", "id": "S208", "alanID": "A13", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "Derimod", "id": "S209", "alanID": "A13", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "Derimod", "id": "S210", "alanID": "A13", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "Derimod", "id": "S211", "alanID": "A13", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "Derimod", "id": "S212", "alanID": "A13", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "Derimod", "id": "S213", "alanID": "A13", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "Derimod", "id": "S214", "alanID": "A13", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S215", "alanID": "A01", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (örn: Gereksiz palet, ambalaj ve atıklar alanda bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S216", "alanID": "A01", "k": "1S", "no": 2, "s": "Hasarlı veya eksik gelen ürünler sağlam ürünlerden ayrılmıştır."}, {"projeID": "IKEA", "id": "S217", "alanID": "A01", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn:  Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S218", "alanID": "A01", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S219", "alanID": "A01", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş paletler, hasarlı ürünler, incelenecek ürünler vb.)"}, {"projeID": "IKEA", "id": "S220", "alanID": "A01", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yer işaretleri, uyarıcı levhalar vb.)"}, {"projeID": "IKEA", "id": "S221", "alanID": "A01", "k": "2S", "no": 3, "s": "Alanda kullanılan malzemeler düzgün şekilde istiflenmiştir. (Örn : Paletler üst üste istifleme kurallarına uygun şekilde konumlandırılmıştır.)"}, {"projeID": "IKEA", "id": "S222", "alanID": "A01", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S223", "alanID": "A01", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S224", "alanID": "A01", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "IKEA", "id": "S225", "alanID": "A01", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "IKEA", "id": "S226", "alanID": "A01", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S227", "alanID": "A01", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "IKEA", "id": "S228", "alanID": "A01", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S229", "alanID": "A01", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S230", "alanID": "A01", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S231", "alanID": "A01", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S232", "alanID": "A01", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S233", "alanID": "A01", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S234", "alanID": "A01", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S235", "alanID": "A01", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S236", "alanID": "A04", "k": "1S", "no": 1, "s": "Depolama alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: Bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S237", "alanID": "A04", "k": "1S", "no": 2, "s": "Hasarlı ürünler alandan ayrılmıştır. (örn:  Hasarlı ürünler, kullanım dışı, hasarlı veya tanımsız aküler alanda bulundurulmamaktadır. vb.)"}, {"projeID": "IKEA", "id": "S238", "alanID": "A04", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S239", "alanID": "A04", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S240", "alanID": "A04", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Raf lokasyonları (raf no, kat, göz) açık ve anlaşılır şekilde tanımlanmıştır. )"}, {"projeID": "IKEA", "id": "S241", "alanID": "A04", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Raf numaraları, lokasyon etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S242", "alanID": "A04", "k": "2S", "no": 3, "s": "Ürünler tanımlı lokasyonlarında ve belirlenen düzen içinde depolanmaktadır. (Örn: Ürünler,  Şarj cihazları, kablolar ve fişler düzenli ve güvenli şekilde konumlandırılmıştır.)"}, {"projeID": "IKEA", "id": "S243", "alanID": "A04", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S244", "alanID": "A04", "k": "3S", "no": 1, "s": "Raflar, zemin, çevre alanlar temizdir.  (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S245", "alanID": "A04", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (örn: Forklifler, Toplama arabaları, RF okuyucular vb.)"}, {"projeID": "IKEA", "id": "S246", "alanID": "A04", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. (Örn: Kablolar ve fişler temiz ve hasarsızdır, Kırık, eğilmiş veya hasarlı raf elemanları tespit edilip bildirilmektedir.)"}, {"projeID": "IKEA", "id": "S247", "alanID": "A04", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, raf çevresinde ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S248", "alanID": "A04", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "IKEA", "id": "S249", "alanID": "A04", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S250", "alanID": "A04", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S251", "alanID": "A04", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S252", "alanID": "A04", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S253", "alanID": "A04", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S254", "alanID": "A04", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S255", "alanID": "A04", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S256", "alanID": "A04", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S257", "alanID": "A05", "k": "1S", "no": 1, "s": "Depolama alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: Bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S258", "alanID": "A05", "k": "1S", "no": 2, "s": "Hasarlı ürünler alandan ayrılmıştır. (örn:  Hasarlı ürünler, kullanım dışı, hasarlı veya tanımsız aküler alanda bulundurulmamaktadır. vb.)"}, {"projeID": "IKEA", "id": "S259", "alanID": "A05", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S260", "alanID": "A05", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S261", "alanID": "A05", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Raf lokasyonları (raf no, kat, göz) açık ve anlaşılır şekilde tanımlanmıştır.  Akü şarj noktaları (Reach Truck no / akü no) net şekilde etiketlenmiştir.)"}, {"projeID": "IKEA", "id": "S262", "alanID": "A05", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Raf numaraları, lokasyon etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S263", "alanID": "A05", "k": "2S", "no": 3, "s": "Ürünler tanımlı lokasyonlarında ve belirlenen düzen içinde depolanmaktadır. (Örn: Ürünler,  Şarj cihazları, kablolar ve fişler düzenli ve güvenli şekilde konumlandırılmıştır.)"}, {"projeID": "IKEA", "id": "S264", "alanID": "A05", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S265", "alanID": "A05", "k": "3S", "no": 1, "s": "Raflar, zemin, çevre alanlar temizdir.  (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S266", "alanID": "A05", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (örn: Forklifler, Toplama arabaları, RF okuyucular vb.)"}, {"projeID": "IKEA", "id": "S267", "alanID": "A05", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. (Örn: Şarj cihazları, kablolar ve fişler temiz ve hasarsızdır, Kırık, eğilmiş veya hasarlı raf elemanları tespit edilip bildirilmektedir.)"}, {"projeID": "IKEA", "id": "S268", "alanID": "A05", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, raf çevresinde ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S269", "alanID": "A05", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "IKEA", "id": "S270", "alanID": "A05", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S271", "alanID": "A05", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S272", "alanID": "A05", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S273", "alanID": "A05", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S274", "alanID": "A05", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S275", "alanID": "A05", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S276", "alanID": "A05", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S277", "alanID": "A05", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S278", "alanID": "A07", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S279", "alanID": "A07", "k": "1S", "no": 2, "s": "Paletler tanımlı alanlarda istiflenmiştir, geçiş/yürüyüş yollarını engellememektedir."}, {"projeID": "IKEA", "id": "S280", "alanID": "A07", "k": "1S", "no": 3, "s": "Transpalet / forklift vb. ekipmanlar tanımlı park alanlarında konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S281", "alanID": "A07", "k": "1S", "no": 4, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S282", "alanID": "A07", "k": "1S", "no": 5, "s": "Hasarlı palet, kırık ekipman veya kullanılamaz malzemeler alanda tutulmamaktadır."}, {"projeID": "IKEA", "id": "S283", "alanID": "A07", "k": "1S", "no": 6, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S284", "alanID": "A07", "k": "2S", "no": 1, "s": "Alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: Boş/dolu palet, kafes, evrak, ekipman park alanları vb.)"}, {"projeID": "IKEA", "id": "S285", "alanID": "A07", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: Yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S286", "alanID": "A07", "k": "2S", "no": 3, "s": "Paletler istif yükseliğine uygun şekilde istiflenmiştir."}, {"projeID": "IKEA", "id": "S287", "alanID": "A07", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S288", "alanID": "A07", "k": "2S", "no": 5, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S289", "alanID": "A07", "k": "3S", "no": 1, "s": "Zemin ve kullanılan ekipmanlar temizdir."}, {"projeID": "IKEA", "id": "S290", "alanID": "A07", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında, rampa kapılarında, ekipman park alanlarında atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S291", "alanID": "A07", "k": "3S", "no": 3, "s": "Kırık, eğilmiş veya hasarlı ekipmanlar tespit edilip bildirilmektedir."}, {"projeID": "IKEA", "id": "S292", "alanID": "A07", "k": "3S", "no": 4, "s": "Çalışma alanında, herhangi bir su / yağ / kimyasal sızıntı, birikinti veya dökülme gözlemlenmemiştir."}, {"projeID": "IKEA", "id": "S293", "alanID": "A07", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, rampa ağzı, ekipmanlar temizlenmektedir.)"}, {"projeID": "IKEA", "id": "S294", "alanID": "A07", "k": "4S", "no": 1, "s": "Rampa alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S295", "alanID": "A07", "k": "4S", "no": 2, "s": "Rampa alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, ekipman park planı, staging standardı vb.)"}, {"projeID": "IKEA", "id": "S296", "alanID": "A07", "k": "4S", "no": 3, "s": "Rampa alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S297", "alanID": "A07", "k": "4S", "no": 4, "s": "Rampa alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S298", "alanID": "A07", "k": "5S", "no": 1, "s": "Rampa alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S299", "alanID": "A07", "k": "5S", "no": 2, "s": "Rampa alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S300", "alanID": "A07", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S301", "alanID": "A07", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S302", "alanID": "A08", "k": "1S", "no": 1, "s": "Rampa alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: bant, karton gibi sarf malzemeler, kement, palet, kafes, transpalet gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S303", "alanID": "A08", "k": "1S", "no": 2, "s": "Paletler tanımlı alanlarda istiflenmiştir, geçiş/yürüyüş yollarını engellememektedir."}, {"projeID": "IKEA", "id": "S304", "alanID": "A08", "k": "1S", "no": 3, "s": "Transpalet / forklift vb. ekipmanlar tanımlı park alanlarında konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S305", "alanID": "A08", "k": "1S", "no": 4, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S306", "alanID": "A08", "k": "1S", "no": 5, "s": "Hasarlı palet, kırık ekipman veya kullanılamaz malzemeler alanda tutulmamaktadır."}, {"projeID": "IKEA", "id": "S307", "alanID": "A08", "k": "1S", "no": 6, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S308", "alanID": "A08", "k": "2S", "no": 1, "s": "Rampa alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: boş/dolu palet, kafes, evrak, ekipman park alanları vb.)"}, {"projeID": "IKEA", "id": "S309", "alanID": "A08", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: rampa numarası, rampa isimlendirme tabelası, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S310", "alanID": "A08", "k": "2S", "no": 3, "s": "Faaliyet görmeyen rampa kapıları kapalıdır."}, {"projeID": "IKEA", "id": "S311", "alanID": "A08", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S312", "alanID": "A08", "k": "2S", "no": 5, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S313", "alanID": "A08", "k": "3S", "no": 1, "s": "Rampa alanı, zemin ve kullanılan ekipmanlar temizdir. Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, rampa ağzı, ekipmanlar temizlenmektedir.)"}, {"projeID": "IKEA", "id": "S314", "alanID": "A08", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, rampa kapılarında, ekipman park alanlarında atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S315", "alanID": "A08", "k": "3S", "no": 3, "s": "Rampa kapıları çalışır ve bakımlı durumdadır, arızalı ekipman bulunmamaktadır."}, {"projeID": "IKEA", "id": "S316", "alanID": "A08", "k": "3S", "no": 4, "s": "Haşere kontrol istasyonları tesis edilen yerdedir. Haşere girişine sebep olacak boşluk bulunmamaktadır."}, {"projeID": "IKEA", "id": "S317", "alanID": "A08", "k": "3S", "no": 5, "s": "Çalışma alanında, herhangi bir su / yağ / kimyasal sızıntı, birikinti veya dökülme gözlemlenmemiştir."}, {"projeID": "IKEA", "id": "S318", "alanID": "A08", "k": "4S", "no": 1, "s": "Rampa alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S319", "alanID": "A08", "k": "4S", "no": 2, "s": "Rampa alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, ekipman park planı, staging standardı vb.)"}, {"projeID": "IKEA", "id": "S320", "alanID": "A08", "k": "4S", "no": 3, "s": "Rampa alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S321", "alanID": "A08", "k": "4S", "no": 4, "s": "Rampa alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S322", "alanID": "A08", "k": "5S", "no": 1, "s": "Rampa alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S323", "alanID": "A08", "k": "5S", "no": 2, "s": "Rampa alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S324", "alanID": "A08", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S325", "alanID": "A08", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S326", "alanID": "A02", "k": "1S", "no": 1, "s": "Paketleme alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: koli, kırpık, dolgu, patpat naylon, bant gibi sarf malzemeler, bant makinesi, MC gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S327", "alanID": "A02", "k": "1S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S328", "alanID": "A02", "k": "1S", "no": 3, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S329", "alanID": "A02", "k": "2S", "no": 1, "s": "Paketleme alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: sarf malzemeler, ürün ve ekipman bekleme alanları vb.)"}, {"projeID": "IKEA", "id": "S330", "alanID": "A02", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: masa numaraları, masa üstü ekipman etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S331", "alanID": "A02", "k": "2S", "no": 3, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S332", "alanID": "A02", "k": "2S", "no": 4, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S333", "alanID": "A02", "k": "3S", "no": 1, "s": "Paketleme alanı, masalar ve kullanılan ekipmanlar temizdir. Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, masalar ve ekipmanlar temizlenmektedir.)"}, {"projeID": "IKEA", "id": "S334", "alanID": "A02", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, paketleme masalarında ve çevresinde, alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S335", "alanID": "A02", "k": "3S", "no": 3, "s": "Ekran/Mouse/Klavye mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S336", "alanID": "A02", "k": "3S", "no": 4, "s": "Scanner mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S337", "alanID": "A02", "k": "3S", "no": 5, "s": "Kargo etiketi yazıcısı mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S338", "alanID": "A02", "k": "4S", "no": 1, "s": "Paketleme alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S339", "alanID": "A02", "k": "4S", "no": 2, "s": "Paketleme alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S340", "alanID": "A02", "k": "4S", "no": 3, "s": "Paketleme alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S341", "alanID": "A02", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S342", "alanID": "A02", "k": "5S", "no": 1, "s": "Paketleme alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S343", "alanID": "A02", "k": "5S", "no": 2, "s": "Paketleme alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S344", "alanID": "A02", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S345", "alanID": "A02", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S346", "alanID": "A03", "k": "1S", "no": 1, "s": "Paketleme alanında operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur. (Örn: koli, kırpık, dolgu, patpat naylon, bant gibi sarf malzemeler, bant makinesi, MC gibi ekipmanlar ya da alan standardındaki belirtilen diğer eşyalar.)"}, {"projeID": "IKEA", "id": "S347", "alanID": "A03", "k": "1S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S348", "alanID": "A03", "k": "1S", "no": 3, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S349", "alanID": "A03", "k": "2S", "no": 1, "s": "Paketleme alanında kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: sarf malzemeler, ürün ve ekipman bekleme alanları vb.)"}, {"projeID": "IKEA", "id": "S350", "alanID": "A03", "k": "2S", "no": 2, "s": "Alandaki tabela, işaretleme, etiketleme ve yer çizgileri görünür ve anlaşılır durumdadır. (Örn: masa numaraları, masa üstü ekipman etiketleri, yürüyüş yolu, ekipman parkı vb.)"}, {"projeID": "IKEA", "id": "S351", "alanID": "A03", "k": "2S", "no": 3, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S352", "alanID": "A03", "k": "2S", "no": 4, "s": "Elektrik prizleri ve kablo bağlantıları hasarsız, düzenli ve güvenli şekilde konumlandırılmıştır."}, {"projeID": "IKEA", "id": "S353", "alanID": "A03", "k": "3S", "no": 1, "s": "Paketleme alanı, masalar ve kullanılan ekipmanlar temizdir. Temizlik faaliyetleri düzenli sürdürülmektedir. (Örn: belirlenen periyotlarda zemin, masalar ve ekipmanlar temizlenmektedir.)"}, {"projeID": "IKEA", "id": "S354", "alanID": "A03", "k": "3S", "no": 2, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: yürüyüş/kaçış yollarında, paketleme masalarında ve çevresinde, alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S355", "alanID": "A03", "k": "3S", "no": 3, "s": "Ekran/Mouse/Klavye mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S356", "alanID": "A03", "k": "3S", "no": 4, "s": "Scanner mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S357", "alanID": "A03", "k": "3S", "no": 5, "s": "Kargo etiketi yazıcısı mevcut ve çalışır durumdadır."}, {"projeID": "IKEA", "id": "S358", "alanID": "A03", "k": "4S", "no": 1, "s": "Paketleme alanında görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S359", "alanID": "A03", "k": "4S", "no": 2, "s": "Paketleme alanına ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S360", "alanID": "A03", "k": "4S", "no": 3, "s": "Paketleme alanında 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S361", "alanID": "A03", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S362", "alanID": "A03", "k": "5S", "no": 1, "s": "Paketleme alanında 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S363", "alanID": "A03", "k": "5S", "no": 2, "s": "Paketleme alanının güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S364", "alanID": "A03", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S365", "alanID": "A03", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}, {"projeID": "IKEA", "id": "S366", "alanID": "A06", "k": "1S", "no": 1, "s": "Alanda operasyonu yürütmek için gerekli tüm eşyalar (ürün, malzeme, ekipman, KKD vb.) tanımlanmıştır ve tanım dışı eşya yoktur."}, {"projeID": "IKEA", "id": "S367", "alanID": "A06", "k": "1S", "no": 2, "s": "Raflara geri dönecek ürünler ile imhaya gidecek ürünler net şekilde ayrılmıştır."}, {"projeID": "IKEA", "id": "S368", "alanID": "A06", "k": "1S", "no": 3, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S369", "alanID": "A06", "k": "1S", "no": 4, "s": "Alanda tanımsız veya gereksiz eşyalar varsa, kırmızı etiket ile etiketlenmiştir. (Kırmızı etiket uygulamasıyla tanımlı alana taşınmış ve kayıt altına alınmıştır.)"}, {"projeID": "IKEA", "id": "S370", "alanID": "A06", "k": "2S", "no": 1, "s": "Alanda kullanılan tüm eşyalar için alan tanımlamaları yapılmıştır. (Örn: İade ürünleri paletli ve tanımlı alanlarda düzenli şekilde konumlandırılmıştır.)"}, {"projeID": "IKEA", "id": "S371", "alanID": "A06", "k": "2S", "no": 2, "s": "Alanda acil durum ekipmanları ve kaçış yollarını engelleyecek eşya bulunmamaktadır. (Örn: Yangın dolabı, acil çıkış kapısı, ilk yardım vb. önü kapalı değildir.)"}, {"projeID": "IKEA", "id": "S372", "alanID": "A06", "k": "2S", "no": 3, "s": "İade kontrol ve ayrıştırma masaları düzenli ve erişilebilirdir."}, {"projeID": "IKEA", "id": "S373", "alanID": "A06", "k": "2S", "no": 4, "s": "Yangın tüpleri tanımlı alanlarında ve kullanılabilir durumdadır (basınç barları yeşildedir)."}, {"projeID": "IKEA", "id": "S374", "alanID": "A06", "k": "3S", "no": 1, "s": "Alan ve zemin temizdir. (Örn: Zemin üzerinde ambalaj, palet parçası veya yabancı madde bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S375", "alanID": "A06", "k": "3S", "no": 2, "s": "Alanda kullanılan ekipmanlar temiz ve çalışılabilir durumdadır. (Örn: Scanner, PC, yazıcı gibi ekipmanlar vb.)"}, {"projeID": "IKEA", "id": "S376", "alanID": "A06", "k": "3S", "no": 3, "s": "Alanda hasarlı ekipman bulunmamaktadır. Örn: Kırık palet, bozuk scanner vb.)"}, {"projeID": "IKEA", "id": "S377", "alanID": "A06", "k": "3S", "no": 4, "s": "Alan atık ve çöplerden arındırılmıştır. (Örn: Yürüyüş/kaçış yollarında ve alan zemininde atık bulunmamaktadır.)"}, {"projeID": "IKEA", "id": "S378", "alanID": "A06", "k": "3S", "no": 5, "s": "Temizlik faaliyetleri düzenli sürdürülmektedir."}, {"projeID": "IKEA", "id": "S379", "alanID": "A06", "k": "4S", "no": 1, "s": "Alanda görev yapan çalışanlar 5S prensipleri konusunda bilgilendirilmiştir. (Örn: Seçilen çalışanlar genel hatlarıyla 5S prensiplerini açıklayabilmektedir.)"}, {"projeID": "IKEA", "id": "S380", "alanID": "A06", "k": "4S", "no": 2, "s": "Alana ait standart yerleşim (layout) ve/veya görsel standartlar alanda paylaşılmıştır. (Örn: Alan planı, masa standardı vb.)"}, {"projeID": "IKEA", "id": "S381", "alanID": "A06", "k": "4S", "no": 3, "s": "Alanda 5S faaliyetleri için kullanılan form ve dokümanlar günceldir. (Örn: 5S denetim formu, temizlik kontrol formu, talimatlar vb.)"}, {"projeID": "IKEA", "id": "S382", "alanID": "A06", "k": "4S", "no": 4, "s": "Paketleme alanında bulunan çalışanlar zorunlu KKD'leri kullanmaktadır. (Örn: Çelik burunlu ayakkabı, reflektör yelek, eldiven vb.)"}, {"projeID": "IKEA", "id": "S383", "alanID": "A06", "k": "5S", "no": 1, "s": "Alanda 5S denetimleri en az vardiyada bir kez yapılmaktadır."}, {"projeID": "IKEA", "id": "S384", "alanID": "A06", "k": "5S", "no": 2, "s": "Alanın güncel 5S denetim sonuçları alanda bulunan 5S panosunda paylaşılmıştır."}, {"projeID": "IKEA", "id": "S385", "alanID": "A06", "k": "5S", "no": 3, "s": "Bir önceki denetimde tespit edilen olumsuzluklar için aksiyon planları ve iyileştirici faaliyetler takip edilmektedir."}, {"projeID": "IKEA", "id": "S386", "alanID": "A06", "k": "5S", "no": 4, "s": "İyi uygulamalar ve başarılı ekipler, 5S panolarında paylaşılmakta ve takdir edilmektedir."}];
 
-async function soruYukle() {
-  const loadingScreen = document.getElementById('loadingScreen');
-  const loadingText   = document.getElementById('loadingText');
-
-  try {
-    loadingText.textContent = 'Sorular yükleniyor...';
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000); // 30 saniye timeout
-    const r = await fetch(SORULAR_FLOW_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}),
-      signal: controller.signal
-    });
-    clearTimeout(timeout);
-    const d = await r.json();
-    const items = d.value || d.items || d || [];
-
-    SR = items.map(item => ({
-      id:      item.Title      || '',
-      projeID: item.field_3    || '',
-      alanID:  item.field_4    || '',
-      alanAdi: item.field_5    || '',
-      platID:  item.field_2    || 'PL',
-      k:       item.field_6    || '',
-      no:      Number(item.field_7) || 0,
-      s:       item.field_8    || '',
-      kritik:  (item.field_12 === 'Evet' || item.field_12 === true)
-    })).sort((a, b) => {
-      if (a.projeID !== b.projeID) return a.projeID.localeCompare(b.projeID);
-      if (a.alanID  !== b.alanID)  return a.alanID.localeCompare(b.alanID);
-      return a.no - b.no;
-    });
-
-    // AL, PRJ ve PRJ_ALANLAR'ı SR'den dinamik türet
-    const prjSet = {};
-    const prjAlanSet = {};
-    SR.forEach(s => {
-      if (!s.projeID) return;
-      prjSet[s.projeID] = s.projeID;
-      // AL objesini güncelle — alanID → alanAdi
-      if (s.alanID && s.alanAdi) AL[s.alanID] = s.alanAdi;
-      if (!prjAlanSet[s.projeID]) prjAlanSet[s.projeID] = {};
-      if (s.alanID) prjAlanSet[s.projeID][s.alanID] = s.alanAdi || s.alanID;
-    });
-    // Global PRJ ve PRJ_ALANLAR'ı güncelle
-    Object.keys(prjSet).forEach(k => { PRJ[k] = k; });
-    Object.keys(prjAlanSet).forEach(k => { PRJ_ALANLAR[k] = prjAlanSet[k]; });
-
-    // Proje dropdown'ını doldur
-    const prjSel = document.getElementById('prjSel');
-    prjSel.innerHTML = '<option value="">Proje seçin...</option>';
-    Object.keys(prjSet).sort().forEach(prj => {
-      const o = document.createElement('option');
-      o.value = prj; o.textContent = prj;
-      prjSel.appendChild(o);
-    });
-
-    loadingText.textContent = `✓ ${SR.length} soru yüklendi`;
-    setTimeout(() => {
-      loadingScreen.style.opacity = '0';
-      setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        // Oturum var mı kontrol et — varsa giriş ekranını atla
-        if(oturumYukle()){
-          kullaniciBilgiYukle(usr.sicilNo);
-          girişTamamla();
-        }
-      }, 400);
-    }, 600);
-
-  } catch (e) {
-    console.warn('Sorular yüklenemedi:', e);
-    loadingText.textContent = '⚠ Bağlantı hatası — tekrar dene';
-    // Hata durumunda yine de devam et — mevcut PRJ/PRJ_ALANLAR statik kalır
-    setTimeout(() => {
-      loadingScreen.style.opacity = '0';
-      setTimeout(() => loadingScreen.style.display = 'none', 400);
-    }, 2000);
-  }
-}
-
- 
 let st={pid:null,aid:null,prj:null,dc:'',sr:[],cv:{},nt:{},ft:{},fb:{},as:null,genelNot:''};
-let usr={sicilNo:'',adSoyad:'',platform:'',mail:''};
+let usr={sicilNo:'',adSoyad:'',platform:'',ilkGiris:false};
 let qrStr=null,qrAF=null;
-
-// ── OTOMATİK KAYIT (her cevap değişince localStorage'a yazar) ──
-function otomatikKaydet(){
-  try{
-    localStorage.setItem('lens_draft',JSON.stringify({
-      st:{pid:st.pid,aid:st.aid,prj:st.prj,dc:st.dc,cv:st.cv,nt:st.nt,fb:st.fb,genelNot:st.genelNot,baslangicZamani:st.baslangicZamani},
-      usr:{sicilNo:usr.sicilNo,adSoyad:usr.adSoyad},
-      ts:Date.now()
-    }));
-  }catch(e){}
-}
-
-function taslakVarMi(){
-  try{
-    const d=JSON.parse(localStorage.getItem('lens_draft')||'null');
-    if(!d) return false;
-    // 24 saatten eski taslakları sil
-    if(Date.now()-d.ts > 86400000){ localStorage.removeItem('lens_draft'); return false; }
-    return d;
-  }catch(e){ return false; }
-}
-
-function taslakSil(){ try{ localStorage.removeItem('lens_draft'); }catch(e){} }
-
-// ── OTURUM YÖNETİMİ (sessionStorage) ──
-function oturumKaydet(){
-  try{ sessionStorage.setItem('lens_usr', JSON.stringify({sicilNo:usr.sicilNo,adSoyad:usr.adSoyad,mail:usr.mail})); }catch(e){}
-}
-
-function oturumYukle(){
-  try{
-    const d=JSON.parse(sessionStorage.getItem('lens_usr')||'null');
-    if(!d||!d.sicilNo) return false;
-    usr.sicilNo=d.sicilNo; usr.adSoyad=d.adSoyad; usr.mail=d.mail||'';
-    DENETCI_MAILLERI[usr.sicilNo]=usr.mail;
-    return true;
-  }catch(e){ return false; }
-}
-
-// ── İNTERNET KONTROLÜ ──
-function internetKontrol(){
-  if(!navigator.onLine){
-    showToast('İnternet bağlantısı yok — lütfen bağlantınızı kontrol edin');
-    return false;
-  }
-  return true;
-}
-
-window.addEventListener('offline',()=>showToast('⚠ İnternet bağlantısı kesildi!'));
-window.addEventListener('online',()=>showToast('✓ İnternet bağlantısı yeniden kuruldu'));
-
 
 function triggerCamera(){
   var fk = document.getElementById('fK');
@@ -668,11 +435,11 @@ async function girisYap(){
       usr.sicilNo=sicil;
       usr.adSoyad=d.adSoyad;
       usr.platform=d.platform;
-      usr.mail='';
+      usr.ilkGiris=d.ilkGiris;
+      // IlkGiris: true, "true", 1, "1", "Evet" hepsini yakala
       const ilk = d.ilkGiris;
       const ilkGirisVar = (ilk===true||ilk==='true'||ilk==='True'||ilk===1||ilk==='1'||ilk==='Evet'||ilk==='evet');
-      // Kullanıcı mail + yönetici listesini arka planda çek
-      kullaniciBilgiYukle(sicil);
+      console.log('ilkGiris raw:', ilk, '-> zorunlu:', ilkGirisVar);
       if(ilkGirisVar){
         goScreen('s0b');
       } else {
@@ -689,56 +456,8 @@ async function girisYap(){
 }
 
 function girişTamamla(){
-  oturumKaydet();
-  // Yarıda kalan taslak var mı kontrol et
-  const taslak = taslakVarMi();
-  if(taslak && taslak.usr && taslak.usr.sicilNo === usr.sicilNo && taslak.st && Object.keys(taslak.st.cv||{}).length > 0){
-    const gecenDk = Math.round((Date.now() - taslak.ts) / 60000);
-    if(confirm(`${gecenDk} dakika önce yarıda bırakılmış bir denetim var (${Object.keys(taslak.st.cv).length} soru cevaplanmış).\n\nDevam etmek ister misiniz?`)){
-      // Taslaktan geri yükle
-      st.pid=taslak.st.pid; st.aid=taslak.st.aid; st.prj=taslak.st.prj;
-      st.dc=taslak.st.dc; st.cv=taslak.st.cv; st.nt=taslak.st.nt;
-      st.fb=taslak.st.fb; st.genelNot=taslak.st.genelNot;
-      st.baslangicZamani=taslak.st.baslangicZamani;
-      st.sr=SR.filter(s=>s.alanID===st.aid&&s.projeID===st.prj);
-      if(st.sr.length){
-        renderForm();
-        document.getElementById('s2T').textContent=(AL[st.aid]||st.aid)+' · '+(PRJ[st.prj]||st.prj);
-        document.getElementById('s2S').textContent=(PL[st.pid]||st.pid);
-        updBadge(); goScreen('s2');
-        showToast('Kaldığınız yerden devam ediyorsunuz');
-        return;
-      }
-    } else {
-      taslakSil();
-    }
-  }
+  // Platform L sabit, dropdown zaten auto-select edilmiş
   goScreen('s1');
-}
-
-async function kullaniciBilgiYukle(sicilNo){
-  try{
-    const r=await fetch(KULLANICI_BILGI_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({sicilNo:sicilNo||usr.sicilNo})
-    });
-    const kb=await r.json();
-    // Denetçi mail
-    if(kb.mail){
-      usr.mail=kb.mail;
-      DENETCI_MAILLERI[usr.sicilNo]=kb.mail;
-    }
-    // Yönetici mail listesi — SharePoint item array'inden Mail alanını çek
-    if(kb.yoneticiMailleri && Array.isArray(kb.yoneticiMailleri)){
-      YONETICI_MAILLERI=kb.yoneticiMailleri
-        .map(y=>y.Mail||y.mail||y.field_1||'')
-        .filter(Boolean);
-    }
-    console.log('Kullanıcı bilgileri yüklendi. Mail:',usr.mail,'Yönetici sayısı:',YONETICI_MAILLERI.length);
-  }catch(e){
-    console.warn('Kullanıcı bilgi flow hatası:',e);
-  }
 }
 
 function chkSifre(){
@@ -773,9 +492,10 @@ async function sifreDegistir(){
 
 function init(){
   const ps=document.getElementById('pSel');
-  Object.entries(PL).forEach(([id,ad])=>{const o=document.createElement('option');o.value=id;o.textContent=ad;ps.appendChild(o);});
-  // Tek platform varsa otomatik seç ve gizle
+  Object.entries(PL).forEach(([id,ad])=>{const o=document.createElement('option');o.value=id;o.textContent=ad+' ('+id+')';ps.appendChild(o);});
+  // Tek platform varsa otomatik seç
   if(Object.keys(PL).length===1){ps.value=Object.keys(PL)[0];ps.disabled=true;}
+  // Alan dropdown başlangıçta boş — proje seçilince dolacak
 }
 
 // Proje değişince alan dropdown'unu filtrele
@@ -809,24 +529,22 @@ function chkM(){
   const p=document.getElementById('pSel').value;
   const prj=document.getElementById('prjSel').value;
   const m=document.getElementById('qrM').value.trim();
-  const ok=(p&&prj)||m.match(/^[A-Z]{2,3}-A\d{2}$/i);
+  const ok=(p&&prj)||m.match(/^P\d{2}-A\d{2}$/);
   document.getElementById('mBtn').disabled=!ok;
 }
 
 function manuelGiris(){
   const m=document.getElementById('qrM').value.trim().toUpperCase();
   let pid,aid=null;
-  if(m.match(/^[A-Z]{2,3}-A\d{2}$/i)){
-    const parts=m.split('-');
-    pid=parts[0]; aid=parts[1];
+  if(m.match(/^P\d{2}-A\d{2}$/)){
+    [pid,aid]=m.split('-');
     if(!PL[pid]){showToast('Geçersiz platform: '+pid);return;}
     if(!AL[aid]){showToast('Geçersiz alan: '+aid);return;}
   } else {
     pid=document.getElementById('pSel').value;
-    if(!pid){showToast('Lütfen platform seçin');return;}
+    if(!PL[pid]){showToast('Lütfen platform seçin');return;}
   }
-  const prj=document.getElementById('prjSel').value;
-  if(!prj){showToast('Lütfen proje seçin');return;}
+  const prj=document.getElementById('prjSel').value||'IKEA';
   st.pid=pid;st.aid=aid;st.prj=prj;
   goAlan();
 }
@@ -834,14 +552,9 @@ function manuelGiris(){
 function goAlan(){
   document.getElementById('s1bT').textContent=(PRJ[st.prj]||st.prj)+' · '+(PL[st.pid]||st.pid);
   const g=document.getElementById('aGrid');g.innerHTML='';
-  // Alan listesini doğrudan SR'den üret — seçili proje+platform kombinasyonuna göre
-  const gorulenAlanlar = {};
-  SR.forEach(s => {
-    if(s.projeID===st.prj && s.alanID && !gorulenAlanlar[s.alanID]){
-      gorulenAlanlar[s.alanID] = s.alanAdi || AL[s.alanID] || s.alanID;
-    }
-  });
-  Object.entries(gorulenAlanlar).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([id,ad])=>{
+  const prjAlanlar=PRJ_ALANLAR[st.prj]||{};
+  Object.entries(prjAlanlar).forEach(([id,ad])=>{
+    if(!SR.some(s=>s.alanID===id&&s.projeID===st.prj))return;
     const b=document.createElement('button');
     b.className='ab'+(id===st.aid?' sel':'');
     b.innerHTML='<div class="aid">'+id+'</div>'+ad;
@@ -851,6 +564,7 @@ function goAlan(){
     };
     g.appendChild(b);
   });
+  // QR ile geldiyse alan zaten seçili, butonu aktif et
   if(st.aid)chkB();
   goScreen('s1b');
   const dEl=document.getElementById('dAdi');
@@ -858,39 +572,21 @@ function goAlan(){
 }
 
 function chkB(){
-  document.getElementById('bBtn').disabled=!st.aid;
+  const alanSec=!!st.aid;
+  document.getElementById('bBtn').disabled=!alanSec;
 }
 
 function dBaslat(){
   st.dc=document.getElementById('dAdi').value.trim()||usr.adSoyad;
   st.sr=SR.filter(s=>s.alanID===st.aid&&s.projeID===st.prj);
   if(!st.sr.length){
-    showToast('Bu alan için soru bulunamadı!');return;
+    showToast('Bu alan için '+PRJ[st.prj]+' sorusu bulunamadı!');return;
   }
   st.cv={};st.nt={};st.ft={};st.fb={};
   st.baslangicZamani=Date.now();
-  st.aktifSure=0; // Aktif kullanım süresi (ms)
-  st._sureSayac=Date.now(); // Son aktif başlangıç
-
-  // Sayfa gizlenince/gösterilince süreyi duraklat/devam ettir
-  if(!window._suреListenerEklendi){
-    window._suреListenerEklendi=true;
-    document.addEventListener('visibilitychange',()=>{
-      if(!st.baslangicZamani) return;
-      if(document.hidden){
-        // Ekran kapandı — o ana kadarki aktif süreyi ekle
-        st.aktifSure=(st.aktifSure||0)+(Date.now()-(st._sureSayac||Date.now()));
-      } else {
-        // Ekran açıldı — sayacı sıfırla
-        st._sureSayac=Date.now();
-      }
-    });
-  }
-
   renderForm();
-  const alanAdi = AL[st.aid] || st.aid;
-  document.getElementById('s2T').textContent=alanAdi+' · '+(PRJ[st.prj]||st.prj);
-  document.getElementById('s2S').textContent=(PL[st.pid]||st.pid);
+  document.getElementById('s2T').textContent=AL[st.aid]+' · '+PRJ[st.prj];
+  document.getElementById('s2S').textContent='Platform L · '+st.pid;
   updBadge();goScreen('s2');
 }
 
@@ -908,7 +604,7 @@ async function startQR(){
         c.width=v.videoWidth;c.height=v.videoHeight;ctx.drawImage(v,0,0);
         try{const img=ctx.getImageData(0,0,c.width,c.height);const code=window.jsQR&&jsQR(img.data,img.width,img.height);
         if(code&&code.data){const val=code.data.toUpperCase().trim();const m=val.match(/P\d{2}-A\d{2}/);
-        if(m){const parts=m[0].split('-');const pid=parts[0],aid=parts[1];if(PL[pid]&&AL[aid]){stopQR();st.pid=pid;st.aid=aid;showToast('QR: '+m[0]);goAlan();return;}}
+        if(m){const[pid,aid]=m[0].split('-');if(PL[pid]&&AL[aid]){stopQR();st.pid=pid;st.aid=aid;showToast('QR: '+m[0]);goAlan();return;}}
         stopQR();showToast('Geçersiz QR kodu');return;}}catch(e){}
       }
       qrAF=requestAnimationFrame(tick);
@@ -928,19 +624,41 @@ function renderForm(){
   const kl=['1S','2S','3S','4S','5S'];
   const kn={'1S':'1S · Ayıkla','2S':'2S · Düzenle','3S':'3S · Temizle','4S':'4S · Standartlaştır','5S':'5S · Sürdür'};
   const kc={'1S':'#0078BE','2S':'#1A7A4A','3S':'#B91C1C','4S':'#6D28D9','5S':'#D97706'};
-  let h=`<div class="progress-card"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:12px;color:var(--text-soft)">Tamamlanan</span><span style="font-size:12px;font-weight:600;color:var(--blue);font-family:'DM Mono',monospace" id="pCount">0 / ${st.sr.length}</span></div><div class="progress-bar"><div class="progress-fill" id="pFill" style="width:0%"></div></div></div>`;
+  let h=`<div class="progress-card"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:12px;color:var(--text-soft)">Tamamlanan</span><span style="font-size:12px;font-weight:600;color:var(--arvato);font-family:'JetBrains Mono',monospace" id="pCount">0 / ${st.sr.length}</span></div><div class="progress-bar"><div class="progress-fill" id="pFill" style="width:0%"></div></div></div>`;
   kl.forEach(k=>{
     const ks=st.sr.filter(s=>s.k===k);if(!ks.length)return;
-    h+=`<div class="kat-header" style="background:${kc[k]}"><span>${kn[k]}</span><span id="ks-${k}" style="font-family:'DM Mono',monospace;font-size:12px;opacity:.85">—</span></div>`;
-    ks.forEach(s=>{h+=`<div class="soru-card" id="sc-${s.id}"><div class="soru-meta"><span class="soru-id">${s.id}</span><span class="kritik-tag">Kritik</span></div><div class="soru-text">${s.s}</div><div class="cevap-row"><button class="cevap-btn" id="ce-${s.id}" onclick="cv('${s.id}','Evet')">Evet</button><button class="cevap-btn" id="ch-${s.id}" onclick="cv('${s.id}','Hayır')">Hayır</button><button class="cevap-btn" id="cn-${s.id}" onclick="cv('${s.id}','NA')">N/A</button></div><div id="ex-${s.id}"></div></div>`;});
+    h+=`<div class="kat-accordion">
+      <button class="kat-toggle" id="kt-${k}" style="background:${kc[k]}" onclick="toggleKat('${k}')">
+        <div class="kat-left">
+          <span class="kat-label">${kn[k]}</span>
+          <span class="kat-count">${ks.length} madde</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="kat-skor" id="ks-${k}">—</span>
+          <span class="kat-arrow">▼</span>
+        </div>
+      </button>
+      <div class="kat-body" id="kb-${k}">`;
+    ks.forEach(s=>{
+      const kritikTag=s.kritik?`<span class="kritik-tag">Kritik</span>`:'';
+      h+=`<div class="soru-card" id="sc-${s.id}"><div class="soru-meta"><span class="soru-id">${s.id}</span>${kritikTag}</div><div class="soru-text">${s.s}</div><div class="cevap-row"><button class="cevap-btn" id="ce-${s.id}" onclick="cv('${s.id}','Evet')">Evet</button><button class="cevap-btn" id="ch-${s.id}" onclick="cv('${s.id}','Hayır')">Hayır</button><button class="cevap-btn" id="cn-${s.id}" onclick="cv('${s.id}','NA')">N/A</button></div><div id="ex-${s.id}"></div></div>`;
+    });
+    h+=`</div></div>`;
   });
   h+=`<button class="btn btn-primary" style="margin-top:4px" onclick="gOzet()">Sonuç Ekranı</button>`;
   document.getElementById('formBody').innerHTML=h;
 }
 
+function toggleKat(k){
+  const btn=document.getElementById('kt-'+k);
+  const body=document.getElementById('kb-'+k);
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+}
+
 function cv(sid,c){
   st.cv[sid]=c;
-  otomatikKaydet(); // Her cevaptan sonra otomatik kaydet
   const card=document.getElementById('sc-'+sid);
   card.className='soru-card '+(c==='Evet'?'ae':c==='Hayır'?'ah':'an');
   ['ce','ch','cn'].forEach(x=>{const b=document.getElementById(x+'-'+sid);if(b)b.className='cevap-btn';});
@@ -1027,8 +745,46 @@ function updKat(){
   ['1S','2S','3S','4S','5S'].forEach(k=>{
     const ks=st.sr.filter(s=>s.k===k);
     const ev=ks.filter(s=>st.cv[s.id]==='Evet').length,na=ks.filter(s=>st.cv[s.id]==='NA').length;
+    const cevaplanan=ks.filter(s=>st.cv[s.id]).length;
     const gc=ks.length-na,el=document.getElementById('ks-'+k);
-    if(el)el.textContent=gc>0?Math.round(ev/gc*100)+'%':'—';
+    if(el){
+      const pct=gc>0?Math.round(ev/gc*100):null;
+      el.textContent=pct!==null?pct+'%':'—';
+      // Tüm cevaplandıysa başlık rengi güncelle
+      const btn=document.getElementById('kt-'+k);
+      if(btn&&cevaplanan===ks.length){
+        const c=pct>=80?'#15803D':pct>=60?'#B45309':'#B91C1C';
+        btn.style.background=c;
+      }
+    }
+    // Kategori tamamlanınca bir sonrakini otomatik aç
+    const ks2=st.sr.filter(s=>s.k===k);
+    const tamamlandi=ks2.every(s=>st.cv[s.id]);
+    if(tamamlandi){
+      // Bu kategorinin body'sini kapat
+      const body=document.getElementById('kb-'+k);
+      const btnEl=document.getElementById('kt-'+k);
+      if(body&&body.classList.contains('open')){
+        body.classList.remove('open');
+        if(btnEl) btnEl.classList.remove('open');
+        // Bir sonraki kategoriyi aç
+        const kl=['1S','2S','3S','4S','5S'];
+        const idx=kl.indexOf(k);
+        if(idx<kl.length-1){
+          const nextK=kl[idx+1];
+          const nextBody=document.getElementById('kb-'+nextK);
+          const nextBtn=document.getElementById('kt-'+nextK);
+          if(nextBody&&!nextBody.classList.contains('open')){
+            nextBody.classList.add('open');
+            if(nextBtn) nextBtn.classList.add('open');
+            // Bir sonraki kategoriye scroll et
+            setTimeout(()=>{
+              if(nextBtn) nextBtn.scrollIntoView({behavior:'smooth',block:'start'});
+            },150);
+          }
+        }
+      }
+    }
   });
 }
 
@@ -1086,7 +842,7 @@ function renderOzet(){
   document.getElementById('i-tarih').textContent=new Date().toLocaleString('tr-TR');
   document.getElementById('s4S').textContent=PRJ[st.prj]+' · '+AL[st.aid];
   const kb=document.getElementById('kBtn');
-  kb.innerHTML=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0078BE" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Denetimi Tamamla ve Kaydet`;kb.style.background='#fff';kb.style.color='#0078BE';kb.disabled=false;
+  kb.textContent="SharePoint'e Kaydet";kb.className='btn btn-success';kb.disabled=false;
 }
 
 function mkData(){
@@ -1097,14 +853,7 @@ function mkData(){
   const detaylar=st.sr.map(s=>({soruID:s.id,kategori:s.k,soru:s.s,cevap:st.cv[s.id]||'Cevaplanmadı',not:st.nt[s.id]||'',fotograf:st.ft[s.id]||'',fotografBase64:st.fb[s.id]||''}));
   const denetciMail=DENETCI_MAILLERI[usr.sicilNo]||'';
   const tarihStr=new Date().toLocaleString('tr-TR');
-  // Süre: aktif kullanım süresi (ekran kapalıyken sayılmaz)
-  const sure=(function(){
-    // Kayıt anında açık kalan süreyi ekle
-    const toplamAktif=(st.aktifSure||0)+(document.hidden?0:(Date.now()-(st._sureSayac||Date.now())));
-    const ms=Math.max(0,toplamAktif);
-    const d=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);
-    return d+'dk '+s+'sn';
-  })();
+  const sure=(function(){const ms=Date.now()-(st.baslangicZamani||Date.now());const d=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);return d+'dk '+s+'sn';})();
   const genelNot=st.genelNot||'';
   return{
     denetimTarihi:new Date().toISOString(),
@@ -1325,28 +1074,21 @@ function mkMailHTML(d){
 }
 
 async function spGonder(){
-  if(!internetKontrol()) return;
   const kb=document.getElementById('kBtn');
-  kb.innerHTML='Gönderiliyor...';kb.disabled=true;
+  kb.textContent='Gönderiliyor...';kb.disabled=true;
   const data=mkData();
   try{
     const r=await fetch(PA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     if(r.ok||r.status===202||r.status===200){
-      kb.innerHTML='✓ Kaydedildi';kb.style.background='#15803D';kb.style.color='#fff';kb.style.boxShadow='0 4px 16px rgba(21,128,61,.35)';
-      taslakSil(); // Başarılı kayıt sonrası taslağı sil
-      const yeniBtn=document.querySelector('#kaydetSection .btn-secondary');
-      if(yeniBtn) yeniBtn.setAttribute('onclick','yeniDenetim()');
+      kb.textContent='Kaydedildi ✓';kb.className='btn btn-success';
       showToast("SharePoint'e kaydedildi, mail gönderildi!");
     }else{throw new Error('HTTP '+r.status);}
   }catch(e){
     if(e.message&&e.message.includes('fetch')){
-      kb.innerHTML='⚠ Bağlantı hatası';kb.style.background='#B91C1C';kb.style.color='#fff';kb.disabled=false;
+      kb.textContent='Bağlantı hatası';kb.className='btn btn-danger';kb.disabled=false;
       showToast('İnternet bağlantınızı kontrol edin');
     }else{
-      kb.innerHTML='✓ Gönderildi';kb.style.background='#15803D';kb.style.color='#fff';
-      taslakSil();
-      const yeniBtn=document.querySelector('#kaydetSection .btn-secondary');
-      if(yeniBtn) yeniBtn.setAttribute('onclick','yeniDenetim()');
+      kb.textContent='Gönderildi ✓';kb.className='btn btn-success';
       showToast('Veri gönderildi, SharePoint kontrol edin');
     }
   }
@@ -1354,14 +1096,7 @@ async function spGonder(){
 
 function cikConfirm(){if(confirm('Denetimden çıkmak istediğinizden emin misiniz?'))goScreen('s1');}
 
-function yeniDenetimOncesiUyar(){
-  if(confirm('Denetim henüz SharePoint\'e kaydedilmedi!\n\nKaydedilmeden çıkmak istediğinizden emin misiniz?')){
-    yeniDenetim();
-  }
-}
-
 function yeniDenetim(){
-  taslakSil();
   st={pid:null,aid:null,prj:null,dc:'',sr:[],cv:{},nt:{},ft:{},fb:{},as:null,genelNot:''};
   document.getElementById('qrM').value='';
   document.getElementById('pSel').value='';
@@ -1374,243 +1109,7 @@ function yeniDenetim(){
 function goScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-// KILAVUZ
-const KV_TABS=[
-  // 0: Genel Bakış
-  `<div class="kv-hero">
-    <div style="background:#fff;border-radius:7px;padding:4px 14px;display:inline-block;margin-bottom:10px"><span style="font-size:16px;font-weight:800;color:#0078BE">arvato</span></div>
-    <div class="kv-hero-title">LENS 5S Denetim Sistemi</div>
-    <div class="kv-hero-sub">Dijital 5S denetimlerini tamamlamak, uygunsuzlukları kayıt altına almak ve sonuçları SharePoint'e otomatik göndermek için kullanılan mobil uygulamadır.</div>
-  </div>
-  <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px">Uygulama Akışı</div>
-  <div class="kv-flow">
-    <div class="kv-flow-box">🔐 Giriş</div><div class="kv-flow-arr">→</div>
-    <div class="kv-flow-box">📍 Alan Seç</div><div class="kv-flow-arr">→</div>
-    <div class="kv-flow-box">📋 Denetim</div><div class="kv-flow-arr">→</div>
-    <div class="kv-flow-box">📸 Fotoğraf</div><div class="kv-flow-arr">→</div>
-    <div class="kv-flow-box">✅ Kaydet</div>
-  </div>
-  <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.8px;text-transform:uppercase;margin:12px 0 8px">Uygulama Ne Yapar?</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
-      <div style="font-size:20px;margin-bottom:4px">📊</div>
-      <div style="font-size:11px;font-weight:600;color:#fff">Skor Hesaplar</div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Otomatik uyum skoru</div>
-    </div>
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
-      <div style="font-size:20px;margin-bottom:4px">📧</div>
-      <div style="font-size:11px;font-weight:600;color:#fff">Mail Gönderir</div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Yöneticilere otomatik</div>
-    </div>
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
-      <div style="font-size:20px;margin-bottom:4px">💾</div>
-      <div style="font-size:11px;font-weight:600;color:#fff">SharePoint'e Kaydeder</div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Tüm veriler merkezi</div>
-    </div>
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
-      <div style="font-size:20px;margin-bottom:4px">📎</div>
-      <div style="font-size:11px;font-weight:600;color:#fff">Fotoğraf Ekler</div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Uygunsuzluk kanıtı</div>
-    </div>
-  </div>`,
-
-  // 1: Giriş
-  `<div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num">1</div>
-      <div><div class="kv-step-title">Giriş Yapın</div><div class="kv-step-sub">Kimlik doğrulama</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">🔢</div>
-      <div class="kv-item-body"><div class="kv-item-title">Sicil Numarası</div><div class="kv-item-desc">Sistemde kayıtlı sicil numaranızı girin. Yalnızca rakamlardan oluşur (örn: 1477)</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">🔑</div>
-      <div class="kv-item-body"><div class="kv-item-title">Şifre</div><div class="kv-item-desc">Yöneticinizden aldığınız ilk şifreyi girin. Sisteme ilk girişte yeni şifre oluşturmanız istenecektir.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(21,128,61,.2)">✅</div>
-      <div class="kv-item-body"><div class="kv-item-title">"Giriş Yap" Butonu</div><div class="kv-item-desc">Her iki alan doldurulduğunda buton aktif olur. Enter tuşu veya butona basarak giriş yapın.</div></div>
-    </div>
-  </div>
-  <div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num" style="background:#B45309">!</div>
-      <div><div class="kv-step-title">İlk Giriş — Şifre Oluşturma</div><div class="kv-step-sub">Yalnızca ilk kez</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(180,83,9,.2)">🔒</div>
-      <div class="kv-item-body"><div class="kv-item-title">Yeni Şifre Belirleyin</div><div class="kv-item-desc">İlk girişte güvenliğiniz için en az 6 karakter içeren yeni bir şifre belirlemeniz zorunludur. Şifreyi iki kez aynı girmeniz gerekir.</div></div>
-    </div>
-  </div>
-  <div class="kv-warn">
-    <div class="kv-warn-icon">💡</div>
-    <div class="kv-warn-text">Şifrenizi unuttuysanız yöneticinizle iletişime geçin. Şifre sıfırlama yönetici tarafından yapılır.</div>
-  </div>`,
-
-  // 2: Alan Seçimi
-  `<div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num">2</div>
-      <div><div class="kv-step-title">Platform ve Alan Seçin</div><div class="kv-step-sub">Denetim noktasını belirleyin</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">📷</div>
-      <div class="kv-item-body"><div class="kv-item-title">QR Kodu ile Hızlı Seçim</div><div class="kv-item-desc">"Kamerayı Aç" butonuna basın ve alana ait QR kodu kameraya doğrultun. Platform ve alan otomatik dolar.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">📋</div>
-      <div class="kv-item-body"><div class="kv-item-title">Manuel Seçim</div><div class="kv-item-desc">Dropdown menüden önce <strong style="color:#fff">Platform</strong>, ardından <strong style="color:#fff">Proje</strong> seçin. QR metin kutusuna elle de girebilirsiniz (örn: P04-A01)</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">▶</div>
-      <div class="kv-item-body"><div class="kv-item-title">"Devam Et" Butonu</div><div class="kv-item-desc">Seçimler tamamlanınca buton aktifleşir. Basınca denetçi adı ve alan seçim ekranına geçilir.</div></div>
-    </div>
-  </div>
-  <div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num">2b</div>
-      <div><div class="kv-step-title">Denetim Alanını Seçin</div><div class="kv-step-sub">Denetçi onay ekranı</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">👤</div>
-      <div class="kv-item-body"><div class="kv-item-title">Denetçi Adı</div><div class="kv-item-desc">Giriş yaptığınız hesaba göre isminiz otomatik gelir, değiştirilemez.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">📍</div>
-      <div class="kv-item-body"><div class="kv-item-title">Alan Seçimi</div><div class="kv-item-desc">Projeye ait alanlar kutucuk şeklinde listelenir. Denetleyeceğiniz alana tıklayın (mavi kenarlıkla seçilir).</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(21,128,61,.2)">🚀</div>
-      <div class="kv-item-body"><div class="kv-item-title">"Denetimi Başlat"</div><div class="kv-item-desc">Alan seçilince buton aktifleşir. Basınca denetim formu yüklenir ve süre sayacı başlar.</div></div>
-    </div>
-  </div>`,
-
-  // 3: Denetim
-  `<div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num">3</div>
-      <div><div class="kv-step-title">Denetim Formunu Doldurun</div><div class="kv-step-sub">Her soruyu değerlendirin</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(21,128,61,.15)">✅</div>
-      <div class="kv-item-body">
-        <div class="kv-item-title" style="color:#86EFAC">Evet — Uygun</div>
-        <div class="kv-item-desc">Alan bu madde için standartta. Kart yeşile döner.</div>
-      </div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(185,28,28,.15)">❌</div>
-      <div class="kv-item-body">
-        <div class="kv-item-title" style="color:#FCA5A5">Hayır — Uygunsuz</div>
-        <div class="kv-item-desc">Uygunsuzluk var. Kart kırmızıya döner. Fotoğraf ve not ekleyebilirsiniz — önerilir.</div>
-      </div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(100,116,139,.15)">➖</div>
-      <div class="kv-item-body">
-        <div class="kv-item-title" style="color:#CBD5E1">N/A — Uygulanamaz</div>
-        <div class="kv-item-desc">Bu madde bu alan için geçerli değil. Skor hesabını etkilemez.</div>
-      </div>
-    </div>
-  </div>
-  <div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num" style="background:#B91C1C">📸</div>
-      <div><div class="kv-step-title">Fotoğraf Ekleme (Hayır'da)</div><div class="kv-step-sub">Uygunsuzluk kanıtı</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(185,28,28,.15)">1</div>
-      <div class="kv-item-body"><div class="kv-item-title">Kırmızı kutuya dokun</div><div class="kv-item-desc">Hayır seçtikten sonra "📷 Fotoğraf ekle" kutusuna basın.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(185,28,28,.15)">2</div>
-      <div class="kv-item-body"><div class="kv-item-title">Kaynak seçin</div><div class="kv-item-desc">Kamera ile çek veya galeriden seç.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(185,28,28,.15)">3</div>
-      <div class="kv-item-body"><div class="kv-item-title">Not girin ve kaydedin</div><div class="kv-item-desc">Uygunsuzluğu kısaca açıklayın, "Kaydet ve Geri Dön" ile devam edin.</div></div>
-    </div>
-  </div>
-  <div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num" style="background:#0078BE">→</div>
-      <div><div class="kv-step-title">Sonuç Ekranı Butonu</div><div class="kv-step-sub">Denetim tamamlayınca</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">📊</div>
-      <div class="kv-item-body"><div class="kv-item-title">"Sonuç Ekranı"</div><div class="kv-item-desc">Tüm sorular yanıtlandıktan sonra formun altındaki "Sonuç Ekranı" butonuna basarak özet ekranına geçin.</div></div>
-    </div>
-  </div>`,
-
-  // 4: Kayıt
-  `<div class="kv-warn">
-    <div class="kv-warn-icon">⚠️</div>
-    <div class="kv-warn-text"><strong>Çok Önemli:</strong> Özet ekranına geçtikten sonra denetimi mutlaka kaydedin. Kaydetmeden uygulamadan çıkıldığında veriler kaybolur.</div>
-  </div>
-  <div class="kv-step">
-    <div class="kv-step-head">
-      <div class="kv-step-num">4</div>
-      <div><div class="kv-step-title">Özeti İnceleyin</div><div class="kv-step-sub">Sonuç ekranı</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">🏆</div>
-      <div class="kv-item-body"><div class="kv-item-title">Uyum Skoru</div><div class="kv-item-desc">Yeşil ≥%80 · Sarı ≥%60 · Kırmızı &lt;%60. Evet/Hayır/N/A sayıları gösterilir.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.2)">📋</div>
-      <div class="kv-item-body"><div class="kv-item-title">Kategori Skorları</div><div class="kv-item-desc">1S–5S her kategori için ayrı puan çubuğu görüntülenir.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(185,28,28,.15)">❗</div>
-      <div class="kv-item-body"><div class="kv-item-title">Uygunsuzluk Listesi</div><div class="kv-item-desc">Hayır verilen maddeler kırmızı kutuda listelenir; fotoğraf eklenenlerde yeşil kamera işareti görünür.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(100,116,139,.15)">📝</div>
-      <div class="kv-item-body"><div class="kv-item-title">Genel Not (opsiyonel)</div><div class="kv-item-desc">Denetim hakkında ek bilgi girmek isterseniz not alanını kullanın.</div></div>
-    </div>
-  </div>
-  <div class="kv-step" style="border-color:rgba(0,120,190,.4);background:rgba(0,120,190,.1)">
-    <div class="kv-step-head">
-      <div class="kv-step-num">💾</div>
-      <div><div class="kv-step-title">"Denetimi Tamamla ve Kaydet"</div><div class="kv-step-sub">Son ve en önemli adım</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.3)">1</div>
-      <div class="kv-item-body"><div class="kv-item-title">Mavi kutuyu bulun</div><div class="kv-item-desc">Sayfanın en üstündeki "Son Adım" başlıklı mavi kutudur.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(0,120,190,.3)">2</div>
-      <div class="kv-item-body"><div class="kv-item-title">Butona basın</div><div class="kv-item-desc">Beyaz "Denetimi Tamamla ve Kaydet" butonuna basın. "Gönderiliyor..." yazısı çıkacaktır.</div></div>
-    </div>
-    <div class="kv-item">
-      <div class="kv-item-icon" style="background:rgba(21,128,61,.2)">3</div>
-      <div class="kv-item-body"><div class="kv-item-title">Onay mesajını bekleyin</div><div class="kv-item-desc">"Kaydedildi ✓" yazısı ve toast bildirimi çıkınca işlem tamamdır. Sonrasında "Yeni Denetim" ile devam edebilirsiniz.</div></div>
-    </div>
-  </div>`
-];
-
-function kilavuzAc(){
-  document.getElementById('kilavuzOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  kvTab(0,document.querySelector('.ktab'));
-}
-
-function kilavuzKapat(e){
-  if(!e||e.target===document.getElementById('kilavuzOverlay')){
-    document.getElementById('kilavuzOverlay').classList.remove('open');
-    document.body.style.overflow='';
-  }
-}
-
-function kvTab(idx,el){
-  document.querySelectorAll('.ktab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('kilavuzBody').innerHTML=KV_TABS[idx];
-}
-
 init();
-soruYukle();
 document.getElementById('pSel').addEventListener('change', function(){ chkM(); });
 document.getElementById('prjSel').addEventListener('change', function(){ chkM(); });
 
