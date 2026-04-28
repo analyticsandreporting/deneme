@@ -502,11 +502,15 @@ async function soruYukle() {
 
   try {
     loadingText.textContent = 'Sorular yükleniyor...';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000); // 30 saniye timeout
     const r = await fetch(SORULAR_FLOW_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
+      body: JSON.stringify({}),
+      signal: controller.signal
     });
+    clearTimeout(timeout);
     const d = await r.json();
     const items = d.value || d.items || d || [];
 
