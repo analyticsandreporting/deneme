@@ -491,10 +491,9 @@ const PL={"PL":"Platform L"};
 const KULLANICI_BILGI_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e74145f84794efdb7797c110b318c5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UkXOm7P2tXfqg23oBp2pisalDfdR87dFzGshH47uPKQ';
 let YONETICI_MAILLERI=[];
 let DENETCI_MAILLERI={};
-// 5S_Sorular — SharePoint'ten çekilir (Power Automate flow URL'si aşağıya girilecek)
+// 5S_Sorular — SharePoint'ten çekilir
 const SORULAR_FLOW_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/115a64ccbf3e43ef9a6a7d3a9661b128/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=oD9vvUMvXt9XP7ZiLdhvxsgBVs5siu9r7ltfSfcZsgk';
-const KULLANICI_BILGI_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e74145f84794efdb7797c110b318c5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UkXOm7P2tXfqg23oBp2pisalDfdR87dFzGshH47uPKQ';
-let SR = []; // Başlangıçta boş — uygulama açılışında doldurulur
+let SR = [];
 
 async function soruYukle() {
   const loadingScreen = document.getElementById('loadingScreen');
