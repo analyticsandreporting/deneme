@@ -556,7 +556,14 @@ async function soruYukle() {
     loadingText.textContent = `✓ ${SR.length} soru yüklendi`;
     setTimeout(() => {
       loadingScreen.style.opacity = '0';
-      setTimeout(() => loadingScreen.style.display = 'none', 400);
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        // Oturum var mı kontrol et — varsa giriş ekranını atla
+        if(oturumYukle()){
+          kullaniciBilgiYukle(usr.sicilNo);
+          girişTamamla();
+        }
+      }, 400);
     }, 600);
 
   } catch (e) {
@@ -572,8 +579,59 @@ async function soruYukle() {
 
  
 let st={pid:null,aid:null,prj:null,dc:'',sr:[],cv:{},nt:{},ft:{},fb:{},as:null,genelNot:''};
-let usr={sicilNo:'',adSoyad:'',platform:'',ilkGiris:false};
+let usr={sicilNo:'',adSoyad:'',platform:'',mail:''};
 let qrStr=null,qrAF=null;
+
+// ── OTOMATİK KAYIT (her cevap değişince localStorage'a yazar) ──
+function otomatikKaydet(){
+  try{
+    localStorage.setItem('lens_draft',JSON.stringify({
+      st:{pid:st.pid,aid:st.aid,prj:st.prj,dc:st.dc,cv:st.cv,nt:st.nt,fb:st.fb,genelNot:st.genelNot,baslangicZamani:st.baslangicZamani},
+      usr:{sicilNo:usr.sicilNo,adSoyad:usr.adSoyad},
+      ts:Date.now()
+    }));
+  }catch(e){}
+}
+
+function taslakVarMi(){
+  try{
+    const d=JSON.parse(localStorage.getItem('lens_draft')||'null');
+    if(!d) return false;
+    // 24 saatten eski taslakları sil
+    if(Date.now()-d.ts > 86400000){ localStorage.removeItem('lens_draft'); return false; }
+    return d;
+  }catch(e){ return false; }
+}
+
+function taslakSil(){ try{ localStorage.removeItem('lens_draft'); }catch(e){} }
+
+// ── OTURUM YÖNETİMİ (sessionStorage) ──
+function oturumKaydet(){
+  try{ sessionStorage.setItem('lens_usr', JSON.stringify({sicilNo:usr.sicilNo,adSoyad:usr.adSoyad,mail:usr.mail})); }catch(e){}
+}
+
+function oturumYukle(){
+  try{
+    const d=JSON.parse(sessionStorage.getItem('lens_usr')||'null');
+    if(!d||!d.sicilNo) return false;
+    usr.sicilNo=d.sicilNo; usr.adSoyad=d.adSoyad; usr.mail=d.mail||'';
+    DENETCI_MAILLERI[usr.sicilNo]=usr.mail;
+    return true;
+  }catch(e){ return false; }
+}
+
+// ── İNTERNET KONTROLÜ ──
+function internetKontrol(){
+  if(!navigator.onLine){
+    showToast('İnternet bağlantısı yok — lütfen bağlantınızı kontrol edin');
+    return false;
+  }
+  return true;
+}
+
+window.addEventListener('offline',()=>showToast('⚠ İnternet bağlantısı kesildi!'));
+window.addEventListener('online',()=>showToast('✓ İnternet bağlantısı yeniden kuruldu'));
+
 
 function triggerCamera(){
   var fk = document.getElementById('fK');
@@ -631,6 +689,30 @@ async function girisYap(){
 }
 
 function girişTamamla(){
+  oturumKaydet();
+  // Yarıda kalan taslak var mı kontrol et
+  const taslak = taslakVarMi();
+  if(taslak && taslak.usr && taslak.usr.sicilNo === usr.sicilNo && taslak.st && Object.keys(taslak.st.cv||{}).length > 0){
+    const gecenDk = Math.round((Date.now() - taslak.ts) / 60000);
+    if(confirm(`${gecenDk} dakika önce yarıda bırakılmış bir denetim var (${Object.keys(taslak.st.cv).length} soru cevaplanmış).\n\nDevam etmek ister misiniz?`)){
+      // Taslaktan geri yükle
+      st.pid=taslak.st.pid; st.aid=taslak.st.aid; st.prj=taslak.st.prj;
+      st.dc=taslak.st.dc; st.cv=taslak.st.cv; st.nt=taslak.st.nt;
+      st.fb=taslak.st.fb; st.genelNot=taslak.st.genelNot;
+      st.baslangicZamani=taslak.st.baslangicZamani;
+      st.sr=SR.filter(s=>s.alanID===st.aid&&s.projeID===st.prj);
+      if(st.sr.length){
+        renderForm();
+        document.getElementById('s2T').textContent=(AL[st.aid]||st.aid)+' · '+(PRJ[st.prj]||st.prj);
+        document.getElementById('s2S').textContent=(PL[st.pid]||st.pid);
+        updBadge(); goScreen('s2');
+        showToast('Kaldığınız yerden devam ediyorsunuz');
+        return;
+      }
+    } else {
+      taslakSil();
+    }
+  }
   goScreen('s1');
 }
 
@@ -656,31 +738,6 @@ async function kullaniciBilgiYukle(sicilNo){
     console.log('Kullanıcı bilgileri yüklendi. Mail:',usr.mail,'Yönetici sayısı:',YONETICI_MAILLERI.length);
   }catch(e){
     console.warn('Kullanıcı bilgi flow hatası:',e);
-  }
-}
-
-async function kullaniciBilgiYukle(){
-  try{
-    const r = await fetch(KULLANICI_BILGI_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({sicilNo: usr.sicilNo})
-    });
-    const d = await r.json();
-    // Denetçi maili
-    if(d.mail) {
-      usr.mail = d.mail;
-      DENETCI_MAILLERI[usr.sicilNo] = d.mail;
-    }
-    // Yönetici mailleri — array of objects geliyor, Mail alanını çıkar
-    if(d.yoneticiMailleri && Array.isArray(d.yoneticiMailleri)){
-      YONETICI_MAILLERI = d.yoneticiMailleri
-        .map(y => y.Mail || y.mail || '')
-        .filter(m => m);
-    }
-    console.log('Kullanıcı bilgisi yüklendi:', usr.mail, '| Yöneticiler:', YONETICI_MAILLERI.length);
-  } catch(e){
-    console.warn('Kullanıcı bilgisi yüklenemedi:', e);
   }
 }
 
@@ -812,6 +869,24 @@ function dBaslat(){
   }
   st.cv={};st.nt={};st.ft={};st.fb={};
   st.baslangicZamani=Date.now();
+  st.aktifSure=0; // Aktif kullanım süresi (ms)
+  st._sureSayac=Date.now(); // Son aktif başlangıç
+
+  // Sayfa gizlenince/gösterilince süreyi duraklat/devam ettir
+  if(!window._suреListenerEklendi){
+    window._suреListenerEklendi=true;
+    document.addEventListener('visibilitychange',()=>{
+      if(!st.baslangicZamani) return;
+      if(document.hidden){
+        // Ekran kapandı — o ana kadarki aktif süreyi ekle
+        st.aktifSure=(st.aktifSure||0)+(Date.now()-(st._sureSayac||Date.now()));
+      } else {
+        // Ekran açıldı — sayacı sıfırla
+        st._sureSayac=Date.now();
+      }
+    });
+  }
+
   renderForm();
   const alanAdi = AL[st.aid] || st.aid;
   document.getElementById('s2T').textContent=alanAdi+' · '+(PRJ[st.prj]||st.prj);
@@ -865,6 +940,7 @@ function renderForm(){
 
 function cv(sid,c){
   st.cv[sid]=c;
+  otomatikKaydet(); // Her cevaptan sonra otomatik kaydet
   const card=document.getElementById('sc-'+sid);
   card.className='soru-card '+(c==='Evet'?'ae':c==='Hayır'?'ah':'an');
   ['ce','ch','cn'].forEach(x=>{const b=document.getElementById(x+'-'+sid);if(b)b.className='cevap-btn';});
@@ -1021,7 +1097,14 @@ function mkData(){
   const detaylar=st.sr.map(s=>({soruID:s.id,kategori:s.k,soru:s.s,cevap:st.cv[s.id]||'Cevaplanmadı',not:st.nt[s.id]||'',fotograf:st.ft[s.id]||'',fotografBase64:st.fb[s.id]||''}));
   const denetciMail=DENETCI_MAILLERI[usr.sicilNo]||'';
   const tarihStr=new Date().toLocaleString('tr-TR');
-  const sure=(function(){const ms=Date.now()-(st.baslangicZamani||Date.now());const d=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);return d+'dk '+s+'sn';})();
+  // Süre: aktif kullanım süresi (ekran kapalıyken sayılmaz)
+  const sure=(function(){
+    // Kayıt anında açık kalan süreyi ekle
+    const toplamAktif=(st.aktifSure||0)+(document.hidden?0:(Date.now()-(st._sureSayac||Date.now())));
+    const ms=Math.max(0,toplamAktif);
+    const d=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);
+    return d+'dk '+s+'sn';
+  })();
   const genelNot=st.genelNot||'';
   return{
     denetimTarihi:new Date().toISOString(),
@@ -1242,6 +1325,7 @@ function mkMailHTML(d){
 }
 
 async function spGonder(){
+  if(!internetKontrol()) return;
   const kb=document.getElementById('kBtn');
   kb.innerHTML='Gönderiliyor...';kb.disabled=true;
   const data=mkData();
@@ -1249,7 +1333,7 @@ async function spGonder(){
     const r=await fetch(PA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     if(r.ok||r.status===202||r.status===200){
       kb.innerHTML='✓ Kaydedildi';kb.style.background='#15803D';kb.style.color='#fff';kb.style.boxShadow='0 4px 16px rgba(21,128,61,.35)';
-      // Kayıt başarılı — Yeni Denetim butonunu güvenli hale getir
+      taslakSil(); // Başarılı kayıt sonrası taslağı sil
       const yeniBtn=document.querySelector('#kaydetSection .btn-secondary');
       if(yeniBtn) yeniBtn.setAttribute('onclick','yeniDenetim()');
       showToast("SharePoint'e kaydedildi, mail gönderildi!");
@@ -1260,6 +1344,7 @@ async function spGonder(){
       showToast('İnternet bağlantınızı kontrol edin');
     }else{
       kb.innerHTML='✓ Gönderildi';kb.style.background='#15803D';kb.style.color='#fff';
+      taslakSil();
       const yeniBtn=document.querySelector('#kaydetSection .btn-secondary');
       if(yeniBtn) yeniBtn.setAttribute('onclick','yeniDenetim()');
       showToast('Veri gönderildi, SharePoint kontrol edin');
@@ -1276,6 +1361,7 @@ function yeniDenetimOncesiUyar(){
 }
 
 function yeniDenetim(){
+  taslakSil();
   st={pid:null,aid:null,prj:null,dc:'',sr:[],cv:{},nt:{},ft:{},fb:{},as:null,genelNot:''};
   document.getElementById('qrM').value='';
   document.getElementById('pSel').value='';
