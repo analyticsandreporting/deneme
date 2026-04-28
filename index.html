@@ -480,17 +480,20 @@ select{-webkit-appearance:none;appearance:none;background-image:url("data:image/
 const AUTH_URL='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f4fb8b83ebf94ac592daedf26043e889/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=q2N33AVJIa-BWbP3Z9-2M8-15-QkJWf5otVg_S8myO4';
 const PA='https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/fef6810e4df745818f4cebd6990d5277/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bYG93e6RT0Cefm-XRexYS0gvP_XABb0pQH4cBHvNx90';
 // Yönetici mail adresleri
-const YONETICI_MAILLERI=['enes.cakar@arvato.com','ekrem.aydogdu@arvato.com','oguzcan.yuce@arvato.com'];
-// Sicil no -> mail eşleştirme tablosu
-const DENETCI_MAILLERI={"1477": "mesut.demir@arvato.com", "1127": "umut.tas@arvato.com", "1224": "oguz.sevindik@arvato.com", "1363": "yasin.tercan@arvato.com", "1185": "abdulkadir.yazici@arvato.com", "2758": "senem.ciftci@arvato.com", "7219": "ramazan.durmus@arvato.com", "1210": "mustafa.uzum@arvato.com", "2792": "mehmet.yilmaz@arvato.com", "5550": "ugurcan.ustun@arvato.com", "2309": "bugra.ozturk@arvato.com", "3423": "ilyas.teymur@arvato.com", "1663": "yasar.yazici@arvato.com", "2368": "okan.alkan@arvato.com", "9967": "can.yilmaz@arvato.com", "1972": "mucahit.ozkan@arvato.com", "1122": "emirhan.coskun@arvato.com", "1993": "ferhat.akman@arvato.com", "6251": "ferhat.kurt@arvato.com", "5498": "samet.yuksel@arvato.com", "2187": "yasin.aydin@arvato.com", "1141": "busra.kayaoglu@arvato.com", "1533": "umay.kayaalp@arvato.com", "2290": "kubra.kilinc@arvato.com", "5053": "meltem.kocael@arvato.com", "7074": "aysenur.bika@arvato.com", "7483": "ahmet.aslan@arvato.com", "10145": "berfin.dogan@arvato.com", "15666": "emre.bektas@arvato.com", "16007": "ekrem.aydogdu@arvato.com", "17271": "irem.polat@arvato.com", "18759": "aksanur.olgun@arvato.com", "18935": "mucahit.celiker@arvato.com", "19335": "emre.deger@arvato.com", "19404": "enes.cakar@arvato.com", "20101": "azad.tunc@arvato.com", "21970": "eser.cagatay@arvato.com", "22558": "hazar.saricimen@arvato.com", "23265": "oguzcan.yuce@arvato.com", "1743": "firat.arguden@arvato.com"};
+// Yönetici ve denetçi mail verileri auth flow'dan gelir — başlangıçta boş
 // Projeler (sorular projeID bazında filtrelenecek)
-let PRJ={"IKEA":"IKEA","Decathlon":"Decathlon","Derimod":"Derimod"};
-let PRJ_ALANLAR={"IKEA": {"A01": "Mal Kabul", "A02": "MZ - Paketleme", "A03": "YK - Paketleme", "A04": "MZ Raf Alanları", "A05": "Akü-YK Raf Alanları", "A06": "İade Alanı", "A07": "Sevkiyat", "A08": "Rampa"}, "Derimod": {"A09": "Mal Kabul", "A10": "Raf Alanları", "A11": "Paketleme", "A12": "Sevkiyat", "A13": "İade Alanı"}, "Decathlon": {"A14": "Mal Kabul", "A15": "Raf Alanları", "A16": "Paketleme", "A17": "Sevkiyat", "A18": "İade Alanı"}};
-// Tek platform
-let AL={"A01": "Mal Kabul", "A02": "MZ - Paketleme", "A03": "YK - Paketleme", "A04": "MZ Raf Alanları", "A05": "Akü-YK Raf Alanları", "A06": "İade Alanı", "A07": "Sevkiyat", "A08": "Rampa", "A09": "Mal Kabul", "A10": "Raf Alanları", "A11": "Paketleme", "A12": "Sevkiyat", "A13": "İade Alanı", "A14": "Mal Kabul", "A15": "Raf Alanları", "A16": "Paketleme", "A17": "Sevkiyat", "A18": "İade Alanı"};
+// Tüm veriler SharePoint'ten soruYukle() ve auth flow'undan dinamik gelir
+let PRJ={};
+let PRJ_ALANLAR={};
+let AL={};
 const PL={"PL":"Platform L"};
+// Mail verileri yeni kullanici bilgi flow'undan gelir
+const KULLANICI_BILGI_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e74145f84794efdb7797c110b318c5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UkXOm7P2tXfqg23oBp2pisalDfdR87dFzGshH47uPKQ';
+let YONETICI_MAILLERI=[];
+let DENETCI_MAILLERI={};
 // 5S_Sorular — SharePoint'ten çekilir (Power Automate flow URL'si aşağıya girilecek)
 const SORULAR_FLOW_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/115a64ccbf3e43ef9a6a7d3a9661b128/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=oD9vvUMvXt9XP7ZiLdhvxsgBVs5siu9r7ltfSfcZsgk';
+const KULLANICI_BILGI_URL = 'https://default659c3a90ec904772b772cebe2050a8.2e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9e74145f84794efdb7797c110b318c5e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UkXOm7P2tXfqg23oBp2pisalDfdR87dFzGshH47uPKQ';
 let SR = []; // Başlangıçta boş — uygulama açılışında doldurulur
 
 async function soruYukle() {
@@ -508,15 +511,15 @@ async function soruYukle() {
     const items = d.value || d.items || d || [];
 
     SR = items.map(item => ({
-      id:      item.SoruID     || item.Title || '',
-      projeID: item.ProjeAdi   || '',
-      alanID:  item.AlanID     || '',
-      alanAdi: item.AlanAdi    || item.AlanID || '',
-      platID:  item.PlatformID || 'PL',
-      k:       item.S_Kategori || '',
-      no:      Number(item.SiraNo) || 0,
-      s:       item.Soru       || '',
-      kritik:  (item.KritikMi === 'Evet' || item.KritikMi === true)
+      id:      item.Title      || '',
+      projeID: item.field_3    || '',
+      alanID:  item.field_4    || '',
+      alanAdi: item.field_5    || '',
+      platID:  item.field_2    || 'PL',
+      k:       item.field_6    || '',
+      no:      Number(item.field_7) || 0,
+      s:       item.field_8    || '',
+      kritik:  (item.field_12 === 'Evet' || item.field_12 === true)
     })).sort((a, b) => {
       if (a.projeID !== b.projeID) return a.projeID.localeCompare(b.projeID);
       if (a.alanID  !== b.alanID)  return a.alanID.localeCompare(b.alanID);
@@ -604,11 +607,11 @@ async function girisYap(){
       usr.sicilNo=sicil;
       usr.adSoyad=d.adSoyad;
       usr.platform=d.platform;
-      usr.ilkGiris=d.ilkGiris;
-      // IlkGiris: true, "true", 1, "1", "Evet" hepsini yakala
+      usr.mail='';
       const ilk = d.ilkGiris;
       const ilkGirisVar = (ilk===true||ilk==='true'||ilk==='True'||ilk===1||ilk==='1'||ilk==='Evet'||ilk==='evet');
-      console.log('ilkGiris raw:', ilk, '-> zorunlu:', ilkGirisVar);
+      // Kullanıcı mail + yönetici listesini arka planda çek
+      kullaniciBilgiYukle(sicil);
       if(ilkGirisVar){
         goScreen('s0b');
       } else {
@@ -625,8 +628,58 @@ async function girisYap(){
 }
 
 function girişTamamla(){
-  // Platform L sabit, dropdown zaten auto-select edilmiş
   goScreen('s1');
+}
+
+async function kullaniciBilgiYukle(sicilNo){
+  try{
+    const r=await fetch(KULLANICI_BILGI_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({sicilNo:sicilNo||usr.sicilNo})
+    });
+    const kb=await r.json();
+    // Denetçi mail
+    if(kb.mail){
+      usr.mail=kb.mail;
+      DENETCI_MAILLERI[usr.sicilNo]=kb.mail;
+    }
+    // Yönetici mail listesi — SharePoint item array'inden Mail alanını çek
+    if(kb.yoneticiMailleri && Array.isArray(kb.yoneticiMailleri)){
+      YONETICI_MAILLERI=kb.yoneticiMailleri
+        .map(y=>y.Mail||y.mail||y.field_1||'')
+        .filter(Boolean);
+    }
+    console.log('Kullanıcı bilgileri yüklendi. Mail:',usr.mail,'Yönetici sayısı:',YONETICI_MAILLERI.length);
+  }catch(e){
+    console.warn('Kullanıcı bilgi flow hatası:',e);
+  }
+}
+}
+
+async function kullaniciBilgiYukle(){
+  try{
+    const r = await fetch(KULLANICI_BILGI_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({sicilNo: usr.sicilNo})
+    });
+    const d = await r.json();
+    // Denetçi maili
+    if(d.mail) {
+      usr.mail = d.mail;
+      DENETCI_MAILLERI[usr.sicilNo] = d.mail;
+    }
+    // Yönetici mailleri — array of objects geliyor, Mail alanını çıkar
+    if(d.yoneticiMailleri && Array.isArray(d.yoneticiMailleri)){
+      YONETICI_MAILLERI = d.yoneticiMailleri
+        .map(y => y.Mail || y.mail || '')
+        .filter(m => m);
+    }
+    console.log('Kullanıcı bilgisi yüklendi:', usr.mail, '| Yöneticiler:', YONETICI_MAILLERI.length);
+  } catch(e){
+    console.warn('Kullanıcı bilgisi yüklenemedi:', e);
+  }
 }
 
 function chkSifre(){
